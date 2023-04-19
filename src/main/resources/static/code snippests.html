@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--<div class="card cardstyle">
+    <div class="card-header bg-primary text-center cardhead">
+        <h3>PurchaseOrder Management</h3>
+    </div>
+
+
+    <div class="card-body bg-white">
+
+        <ul class="nav nav-tabs mb-2">
+            <li class="nav-item" onclick="changeTab('form')">
+                <a class="nav-link active" id="tbForm" href="#">purchaseorder Add Form</a>
+            </li>
+            <li class="nav-item" onclick="changeTab('table')">
+                <a class="nav-link" id="tbTable" href="#">purchaseorder View Table</a>
+            </li>
+        </ul>
+
+        <div class="row p-3" style="background-color: #DADDE1" id="divFrom">
+            <div class="col-md-12">
+                <form class="" id="purchaseorderform" onsubmit="return false">
+
+
+                    <div class="row">
+                        <div class="col-md-12 pull-right text-right">
+                            <p class="font-weight-bold text-dark"><span
+                                    style="color:red; font-size:24px"><b>*</b></span> Required</p>
+                        </div>
+                    </div>
+
+
+                    &lt;!&ndash; STARTING item code , category , subcategory &ndash;&gt;
+
+                    <div class="row" class="mt-1 mb-2">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="txtItemCode"><b>Item Code : </b> <span
+                                        class="star"> * </span></label>
+                                <input type="text"
+                                       id="txtItemCode"
+                                       placeholder="itm000X"
+                                       class="form-control"
+                                       data-toggle="tooltip"
+                                       title="Item Code Here.. (eg: itm0001)"
+                                       data-placement="bottom"
+                                       required
+                                       onkeyup="textFieldBinder(txtItemCode ,'^[a-zA-Z]{3}[0-9]{4}$' , 'item' , 'itemcode' , 'olditem' )">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="cmbCategory"><b>Category : </b> <span
+                                        class="star"> * </span></label>
+                                <select id="cmbCategory"
+                                        class="form-control"
+                                        data-toggle="tooltip"
+                                        title="Category Here.."
+                                        data-placement="bottom"
+                                        onchange="cmbCategoryCH()"
+                                        required></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="cmbCategory"><b>Sub Category : </b> <span
+                                        class="star"> * </span></label>
+                                <select id="cmbSubCategory"
+                                        class="form-control"
+                                        data-toggle="tooltip"
+                                        title="Sub Category Here.."
+                                        data-placement="bottom"
+                                        onchange="comboBoxBinder(cmbSubCategory , '' , 'item' ,'subcategory_id' , 'olditem' )"
+                                        required></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    &lt;!&ndash; STARTING item code , category , subcategory &ndash;&gt;
+
+                    &lt;!&ndash; STARTING brand  , units , full name&ndash;&gt;
+
+                    <div class="row mb-2">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="cmbBrand"><b>Brand : </b> <span class="star"> * </span></label>
+                                <select id="cmbBrand"
+                                        class="form-control"
+                                        data-toggle="tooltip"
+                                        title="Brand Here.."
+                                        data-placement="bottom"
+                                        onchange="comboBoxBinder(cmbBrand , '' , 'item' , 'brand_id' , 'olditem')"
+                                        required></select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="cmbUits"><b>Units : </b> <span
+                                        class="star"> * </span></label>
+                                <select id="cmbUits"
+                                        class="form-control"
+                                        data-toggle="tooltip"
+                                        title="Units Here.."
+                                        data-placement="bottom"
+                                        onchange="comboBoxBinder(cmbUits , '' , 'item' , 'unit_id' , 'olditem')"
+                                        required></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txtItemName"><b>Item Name : </b> <span
+                                        class="star"> * </span></label>
+                                <input type="text"
+                                       id="txtItemName"
+                                       placeholder="Item Name"
+                                       class="form-control"
+                                       data-toggle="tooltip"
+                                       title="Item Name Here.."
+                                       data-placement="bottom"
+                                       onkeyup="textFieldBinder(txtItemName , '^.*$' , 'item' , 'itemname' , 'olditem')"
+                                       required>
+                            </div>
+                        </div>
+                    </div>
+
+                    &lt;!&ndash; END brand  , units , full name&ndash;&gt;
+
+                    <div class="row mb-2">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtRop"><b>ROP : </b> <span
+                                        style="color: red; font-weight: bold"> (Optional) </span>
+                                </label>
+                                <input type="text"
+                                       id="txtRop"
+                                       placeholder="001"
+                                       class="form-control mt-3"
+                                       data-toggle="tooltip"
+                                       title="ROP Here..(numbers only)"
+                                       data-placement="bottom"
+                                       onkeyup="textFieldBinder(txtRop , '^[0-9]{3}$' , 'item' , 'rop' , 'olditem')">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="" for="txtRoq"><b>ROQ : </b> <span
+                                        style="color: red ; font-weight: bold"> (Optional) </span></label>
+                                <input type="text"
+                                       id="txtRoq"
+                                       placeholder="001"
+                                       class="form-control mt-3"
+                                       data-toggle="tooltip"
+                                       title="ROQ Here..(numbers only)"
+                                       data-placement="bottom"
+                                       onkeyup="textFieldBinder(txtRoq , '^[0-9]{3}$' , 'item' , 'roq' , 'olditem')">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txtDescription"><b>Item Description : </b> <span
+                                        style="color: red ; font-weight: bold">(Optional)</span></label>
+                                <textarea id="txtDescription"
+                                          placeholder="Description"
+                                          class="form-control"
+                                          data-toggle="tooltip"
+                                          title="Description Here.."
+                                          data-placement="bottom"
+                                          onkeyup="textFieldBinder(txtDescription , '^.*$' , 'item' , 'description' , 'olditem')"> </textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    &lt;!&ndash;STARTING added date , status , employee &ndash;&gt;
+
+                    <div class="row mb-2">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="" for="dteDate"><b>Added Date : </b><span
+                                        class="star">*</span></label>
+                                <input type="text"
+                                       id="dteDate"
+                                       placeholder="Added Date"
+                                       class="form-control"
+                                       data-toggle="tooltip"
+                                       title="Added Date Here.."
+                                       data-placement="bottom"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="cmbStatus"><b>Item Status : </b> <span
+                                        class="star"> * </span></label>
+                                <select id="cmbStatus"
+                                        placeholder="Item Status"
+                                        class="form-control"
+                                        data-toggle="tooltip"
+                                        title="Item Status Here.."
+                                        data-placement="bottom"
+                                        onchange="comboBoxBinder(cmbStatus , '' , 'item' , 'itemstatus_id' , 'olditem')"
+                                        required></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="" for="txtEmployee"><b>Added By : </b><span
+                                        class="star">*</span></label>
+                                <select id="txtEmployee"
+                                        placeholder="Added By"
+                                        class="form-control"
+                                        data-toggle="tooltip"
+                                        title="Added By.."
+                                        data-placement="bottom"
+                                        readonly
+                                        required> </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    &lt;!&ndash;END added date , status , employee &ndash;&gt;
+
+
+                    &lt;!&ndash; Buttons starts here &ndash;&gt;
+                    <div class="text-right">
+                        <button class="btn btn-outline-info " type="button" id="btnClear"
+                                style="width: 25%">
+                            <i class="fas fa-recycle mr-2"></i> Clear
+                        </button>
+                        <button class="btn btn-outline-warning" type="submit" id="btnUpdate"
+                                style="width: 25%"><i class="fas fa-edit mr-2"></i> Update
+                        </button>
+                        <button class="btn btn-outline-success" style="width: 25%" type="submit"
+                                id="btnAdd">
+                            <i class='fas fa-plus-circle mr-2'></i>Add
+                        </button>
+                    </div>
+
+                    &lt;!&ndash; Buttons ends here &ndash;&gt;
+                </form>
+            </div>
+        </div>
+
+        <div class="row p-3 formcontent" id="divTable">
+            <div class="container-fluid">
+
+                <input type="button" class="btn tblbtnprint font-weight-bold" value="Print Table"
+                       id="btnPrintTable" onclick="btnPrintTableMC()"/>
+                <div class="float-right">
+                    <input placeholder="Search" class="form-control" type="text"
+                           id="txtSearchName"/>
+                </div>
+
+            </div>
+
+
+            <hr/>
+            <div class="table-responsive" id="tableParentEX" class="table-container ml-2">
+
+                <script>
+
+                    /*function getVolume(ob){
+                        var volume = ob.unit_id.name + " " + ob.unit_id.unitytype_id.name;
+                        return volume;
+                    }
+
+                    function getVolume(itm , rowno){
+                        item = JSON.parse(JSON.stringify(itm));
+                        var volume = item.unit_id.name + " " + item.unit_id.unitytype_id.name;
+                        re
+                         */
+
+
+                    var metadata = [
+                        {name: 'Item Code', search: true, datatype: 'text', property: 'itemcode'},
+                        {name: 'Item Name', search: true, datatype: 'text', property: 'itemname'},
+                        {
+                            name: 'Category',
+                            search: true,
+                            datatype: 'text',
+                            property: 'subcategory_id.category_id.name'
+                        },
+                        {
+                            name: 'Sub Category',
+                            search: true,
+                            datatype: 'text',
+                            property: 'subcategory_id.name'
+                        },
+                        {name: 'Brand', search: true, datatype: 'text', property: 'brand_id.name'},
+                        {name: 'ROP', search: true, datatype: 'text', property: 'rop'},
+                        {name: 'ROQ', search: true, datatype: 'text', property: 'roq'},
+                        {name: 'Volume', search: true, datatype: 'text', property: 'unit_id.name'},
+                        {
+                            name: 'Status',
+                            search: true,
+                            datatype: 'text',
+                            property: 'itemstatus_id.name'
+                        }
+                    ];
+                    table("tableParent", "tblItems", metadata, true);
+
+                </script>
+
+
+            </div>
+
+            <div>
+                <div style="display: inline-block ; float: left">
+                    <select class="form-control input" id="cmbPageSize"
+                            style="width: 80px;">
+                        <option selected value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                    </select>
+                    <script>
+                        cmbPageSize.onchange = function chnagePageSize() {
+                            activepage = 1;
+                            btnSearchMC();
+                        };
+                    </script>
+                </div>
+                <div style="display: inline-block; margin-left: 10px;">
+                    <ul id="pagination" class="pagination"></ul>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="card-footer">
+        <div id="err">
+            <h3>Error Log</h3>
+        </div>
+    </div>
+
+</div>-->
+</body>
+</html>

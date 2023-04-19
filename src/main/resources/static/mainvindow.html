@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel=" icon" type="image/png" href="resources/image/favicon.png">
+    <title>OMEL Lanka : Dashboard</title>
+
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+
+    <script defer src="resources/fontawesome/js/solid.js"></script>
+    <script defer src="resources/fontawesome/js/fontawesome.js"></script>
+
+    <script src="resources/jquery/jquery-3.4.1.min.js"></script>
+    <script src="resources/jquery/popper.min.js"></script>
+    <script src="resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="resources/script/common.bitproject.js"></script>
+    <script src="resources/script/mainWindow.js"></script>
+    <script src="resources/chart/Chart.js"></script>
+
+    <link rel="stylesheet" href="resources/style/home.css">
+    <link rel="stylesheet" href="resources/style/common.css">
+    <link rel="stylesheet" href="resources/style/style4.css">
+    <script src="resources/script/sweetalert.min.js"></script>
+    <style>
+
+        .bg {
+            background-image: url("resources/image/supermarketbackground/supplierbackground.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .notification-dialog {
+            position: fixed;
+            margin: auto;
+            width: 400px;
+            height: 100%;
+            right: 30px;
+            overflow-y: auto;
+        }
+
+        .notification-content {
+            height: 100%;
+        }
+
+        div.menuele:hover {
+            background-color: #EEEEEE;
+        }
+
+        .modal-body {
+            word-break: break-all;
+        }
+
+        .details-info-content {
+            word-wrap: break-word;
+        }
+
+        hr.solid {
+            border-top: 2px solid #999;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+
+        <div class="sidebar-header text-center">
+            <h3>OMEL Supermartket</h3>
+            <strong>WELCOME</strong>
+        </div>
+
+        <div class="sidebar-header list-unstyled text-center">
+            <a href="#"><img id="profileImage" class="profileImage"></a><br>
+            <br>
+            <label><span id="lblLogUser"> </span></label>
+            <br>
+            <label>Loged as : <span id="spnDesignation"> </span></label>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="http://localhost:8080/mainwindow">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="#adminSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-briefcase"></i>
+                    Administration
+                </a>
+                <ul class="collapse list-unstyled" id="adminSubMenu">
+                    <li class="EMPLOYEE">
+                        <a href="http://localhost:8080/employee">EMPLOYEE</a>
+                    </li>
+                    <li class="PRIVILAGE">
+                        <a href="http://localhost:8080/privilage">PREVILLAGE</a>
+                    </li>
+                    <li class="USER">
+                        <a href="http://localhost:8080/user">USER</a>
+                    </li>
+                </ul>
+
+                <a href="#purchaseSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fa fa-credit-card"></i>
+                    Purchase
+                </a>
+                <ul class="collapse list-unstyled" id="purchaseSubmenu">
+                    <li class="SUPPLIER">
+                        <a href="http://localhost:8080/supplier">SUPPLIER</a>
+                    </li>
+                    <li class="QUOTATTIONREQ">
+                        <a href="http://localhost:8080/quatationrequest">QUOTATION REQ</a>
+                    </li>
+                    <li class="QUOTATION">
+                        <a href="http://localhost:8080/quatation">QUITATION</a>
+                    </li>
+                    <li class="SUPPLIERRETURN">
+                        <a href="http://localhost:8080/supplierreturn">SUPPLIER RETURN</a>
+                    </li>
+                    <li class="PORDER">
+                        <a href="http://localhost:8080/purchaseorder">PURCHASE ORDER</a>
+                    </li>
+                    <li class=" GRN ">
+                        <a href="http://localhost:8080/grn">GRN</a>
+                    </li>
+                    <li class="SPAYMENT">
+                        <a href="http://localhost:8080/supplierpayment">SUP PAYMENT</a>
+                    </li>
+                </ul>
+
+                <a href="#itemSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fa fa-cart-plus"></i>
+                    ITEM
+                </a>
+                <ul class="collapse list-unstyled" id="itemSubMenu">
+                    <li class="ITEM">
+                        <a href="http://localhost:8080/item">ITEM</a>
+                    </li>
+                    <li class="BATCH">
+                        <a href="http://localhost:8080/batch">BATCH</a>
+                    </li>
+                    <li class="INVENTORY">
+                        <a href="http://localhost:8080/inventory">INVENTORY</a>
+                    </li>
+                </ul>
+
+                <!--CUSTOMER-->
+                <a href="#customerSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fa fa-user"></i>
+                    Customer
+                </a>
+                <ul class="collapse list-unstyled" id="customerSubMenu">
+                    <li class="CUSTOMER">
+                        <a href="http://localhost:8080/customer">CUSTOMER REG</a>
+                    </li>
+                    <li class="CUSTOMERORDER">
+                        <a href="http://localhost:8080/customerorder">CUSTOMER ORDER</a>
+                    </li>
+                    <li class="INVOICE">
+                        <a href="http://localhost:8080/invoice">INVOICE</a>
+                    </li>
+                </ul>
+
+
+            </li>
+
+            <li class="dropdown-divider"></li>
+            <!--reports-->
+            <li>
+                <a href="#reportssubmenu" id="reports" data-toggle="collapse" aria-expanded="false"
+                   class="dropdown-toggle">
+                    <i class="fa fa-chart-line" ></i>
+                    Reports
+                </a>
+                <ul class="collapse list-unstyled" id="reportssubmenu">
+                    <li class="REPORT">
+                        <a href="http://localhost:8080/incomereport">Income Report</a>
+                    </li>
+                    <li class="REPORT">
+                        <a href="http://localhost:8080/expencereport">Expense Report</a>
+                    </li>
+                    <li class="REPORT">
+                        <a href="http://localhost:8080/areusamountreport">Areus Amount Report</a>
+                    </li>
+                    <li class="REPORT">
+                        <a href="http://localhost:8080/itemsalereport">Areus Amount Report</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <!--setting veiw profile , sign out-->
+            <li class="dropdown-divider"></li>
+
+            <li>
+                <a href="#settingssubmenu" id="settings" data-toggle="collapse" aria-expanded="false"
+                   class="dropdown-toggle">
+                    <i class="fa fa-cog"></i>
+                    Settings
+                </a>
+                <ul class="collapse list-unstyled" id="settingssubmenu">
+                    <!--<li class="VIEWPROFILE">
+                        <a href="#">View Profile</a>
+                    </li>-->
+                    <li class="CHANGEPASS">
+                        <a href="#"
+                           data-toggle="modal"
+                           data-target="#settingsModal">Change Password</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="dropdown-divider"></li>
+
+            <li>
+                <a href="#" id="signout" data-toggle="collapse" aria-expanded="false" onclick="btnSignoutMC()">
+                    <i class="fa fa-sign-out-alt"></i>
+                    Sign Out
+                </a>
+            </li>
+
+            <li class="dropdown-divider"></li>
+        </ul>
+
+        <!--<ul class="list-unstyled CTAs text-center">
+            <li>
+                <div class="text-center">
+                    <a href="#"><img id="profileImage" class="profileImage "></a><br>
+                </div>
+                <div tyle="margin-top: 5px">
+                    <div id="lblLogUser"></div> <p class="font-weight-bold text-white"> Loged as : <span id="spnDesignation"> </span></p>
+                </div>
+            </li>
+        </ul>-->
+
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+            <div class="container-fluid">
+                <div class="">
+                    <h2 class="text-white font-weight-bold"> DASHBOARD</h2>
+                </div>
+                <div class="navbar-nav ml-auto">
+
+                </div>
+                <div class="float-right nav-item ">
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#notification">
+                        <i class="fa fa-bell" aria-hidden="true"></i> Notification
+                    </button>
+                </div>
+                <!--<form class="form-inline my-2 my-lg-0 mr-2 float-right">
+
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav ">
+                            &lt;!&ndash;methanata profile pic eke code eka&ndash;&gt;
+                        </ul>
+                    </div>
+                </form>-->
+            </div>
+        </nav>
+
+        <!-- Content -->
+        <div class="container-fluid dashbordbody bg">
+
+            <a class="float" data-toggle="modal" data-target="#menuModal">
+                <i class="fa fa-th-large my-float float-icon" aria-hidden="true"></i>
+            </a>
+
+
+            <div class="row ml-1 mb-3 ">
+                <div class="col-md-12">
+                    <div class="card-deck">
+                        <div class="card REPORT" style="background-color: #FF5733">
+                            <div class="card-body ">
+                                <h5 class="card-title" style="color: white">Total Income</h5>
+                                <h1><span class="badge badge-warning" style="color: white"
+                                          id="lblThisMonthIncome"></span></h1>
+                            </div>
+                        </div>
+                        <div class="card bg-primary REPORT">
+                            <div class="card-body" style="background-color: #C70039">
+                                <h5 class="card-title" style="color: white">Total Expense</h5>
+                                <h1><span class="badge badge-warning" style="color: white"
+                                          id="lblThisMonthExpense"></span></h1>
+
+                            </div>
+                        </div>
+                        <div class="card  bg-dark">
+                            <div class="card-body" style="background-color: #0000FF">
+                                <h5 class="card-title" style="color: white">Total Orders</h5>
+                                <h1><span class="badge badge-warning" style="color: white" id="lblOrderCount"></span>
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="card bg-primary">
+                            <div class="card-body" style="background-color: #6B8E23">
+                                <h5 class="card-title" style="color: white">Total Customers</h5>
+                                <h1><span class="badge badge-warning" style="color: white" id="lblCustomerCount"></span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row ml-1 mb-3 ">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card p-2 REPORT">
+                                <h1><span class="badge badge-secondary align-content-center">Most Selling Items</span>
+                                </h1>
+                                <canvas id="myChart" style="width: 100% ; height: 70%"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col-md-3 INVOICE">
+                            <div class="card menuele" style="width: 120px ; height: 160px"
+                                 onclick="window.location.assign('http://localhost:8080/invoice')">
+                                <img class="card-img-top" src="resources/image/cart/image2/invoice.png"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">INVOICE</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3 ITEM">
+                            <div class="card menuele" style="width: 120px ; height: 160px"
+                                 onclick="window.location.assign('http://localhost:8080/item')">
+                                <img class="card-img-top" src="resources/image/cart/image2/item.png"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">ITEM</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3 PORDER">
+                            <div class="card menuele" style="width: 120px ; height: 160px"
+                                 onclick="window.location.assign('http://localhost:8080/purchaseorder')">
+                                <img class="card-img-top" src="resources/image/cart/image2/purchaseorder.png"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">PORDER</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3 GRN">
+                            <div class="card menuele" style="width: 120px ; height: 160px"
+                                 onclick="window.location.assign('http://localhost:8080/grn')">
+                                <img class="card-img-top" src="resources/image/cart/image2/grn.png"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">GRN</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-2">
+                        <h1><span class="badge badge-danger align-content-center">Low Inventory</span></h1>
+                        <div class="" id="tableParent" class=" p-2">
+                            <script>
+                                var metadata = [
+                                    {
+                                        name: 'Item Name',
+                                        search: false,
+                                        datatype: 'text',
+                                        property: 'itemname'
+                                    },
+                                    {
+                                        name: 'Amount',
+                                        search: false,
+                                        datatype: 'text',
+                                        property: 'amount'
+                                    },
+                                    {
+                                        name: 'Supplier',
+                                        search: false,
+                                        datatype: 'text',
+                                        property: 'supplier'
+                                    },
+
+                                ];
+                                table("tableParent", "tblLowInventory", metadata, false);
+
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="err"></div> <!--this is a hidden element-->
+        </div>
+    </div>
+</div>
+
+<!--<div class="overlay"></div>-->
+<div class="logoutray">
+
+</div>
+
+<!--Menu Modal-->
+<div class="modal fade" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#F9AA33 ; color: #f8f8ff">
+                <h5 class="modal-title">MENU ITEMS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class=modal-body" style="padding: 0px">
+                <div class="p-4">
+                    <div class="row mt-1 ml-1 mb-2 ">
+                        <div class="col-md-2  ITEM">
+                            <div class="card menuele" style="width: 100px ; height: 170px"
+                                 onclick="window.location.assign('http://localhost:8080/item')">
+                                <img class="card-img-top" src="resources/image/cart/image2/item.png"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">ITEM</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2 SUPPLIER">
+                            <div class="card menuele" style="width: 100px ; height: 170px"
+                                 onclick="window.location.assign('http://localhost:8080/supplier')">
+                                <img class="card-img-top" src="resources/image/cart/image2/supplier.jpg"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">SUPPLIER</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2  QUOTATTIONREQ">
+                            <div class="card menuele" style="width: 100px ; height: 170px"
+                                 onclick="window.location.assign('http://localhost:8080/quatationrequest')">
+                                <img class="card-img-top" src="resources/image/cart/image2/quotationreq.jpg"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">QUOTATION REQ</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2 QUOTATION">
+                            <div class="card menuele" style="width: 100px ; height: 170px"
+                                 onclick="window.location.assign('http://localhost:8080/quatation')">
+                                <img class="card-img-top" src="resources/image/cart/image2/quotation.png"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">QUOTATION</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2 PORDER">
+                            <div class="card menuele" style="width: 100px ; height: 170px"
+                                 onclick="window.location.assign('http://localhost:8080/purchaseorder')">
+                                <img class="card-img-top" src="resources/image/cart/image2/purchaseorder.png"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">PORDER</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2 SUPPLIERRETURN">
+                            <div class="card menuele" style="width: 100px ; height: 170px"
+                                 onclick="window.location.assign('http://localhost:8080/supplierreturn')">
+                                <img class="card-img-top" src="resources/image/cart/image2/supplierreturn.jpg"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">SUP RETURN</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-1 ml-1 mb-2 ">
+                        <div class="col-md-2 GRN">
+                            <div class="card menuele" style="width: 100px ; height: 140px"
+                                 onclick="window.location.assign('http://localhost:8080/grn')">
+                                <img class="card-img-top" src="resources/image/cart/image2/grn.png"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">GRN</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2 SPAYMENT">
+                            <div class="card menuele" style="width: 100px ; height: 140px"
+                                 onclick="window.location.assign('http://localhost:8080/supplierpayment')">
+                                <img class="card-img-top" src="resources/image/cart/image2/supplierpayment.jpg"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">SUP PAYMENT</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2 INVOICE">
+                            <div class="card menuele" style="width: 100px ; height: 140px"
+                                 onclick="window.location.assign('http://localhost:8080/invoice')">
+                                <img class="card-img-top" src="resources/image/cart/image2/invoice.png"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">INVOICE</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2 CUSTOMER">
+                            <div class="card menuele" style="width: 100px ; height: 140px"
+                                 onclick="window.location.assign('http://localhost:8080/customet')">
+                                <img class="card-img-top" src="resources/image/cart/image2/customer.png"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">CUSTOMER</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2 CUSTOMERORDER">
+                            <div class="card menuele" style="width: 100px ; height: 140px"
+                                 onclick="window.location.assign('http://localhost:8080/customerorder')">
+                                <img class="card-img-top" src="resources/image/cart/image2/customer.png"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">CUSTOMER ORDER</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2 INVOICE">
+                            <div class="card menuele" style="width: 100px ; height: 140px"
+                                 onclick="window.location.assign('http://localhost:8080/invoice')">
+                                <img class="card-img-top" src="resources/image/cart/image2/invoice.png"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">INVOICE</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-1 ml-1 mb-2  ">
+                        <div class="col-md-2 BATCH">
+                            <div class="card menuele" style="width: 100px ; height: 140px"
+                                 onclick="window.location.assign('http://localhost:8080/batch')">
+                                <img class="card-img-top" src="resources/image/cart/image2/purchaseorder.png"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">BATCH</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2 INVENTORY">
+                            <div class="card menuele" style="width: 100px ; height: 140px"
+                                 onclick="window.location.assign('http://localhost:8080/inventory')">
+                                <img class="card-img-top" src="resources/image/cart/image2/inventory.jpg"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">INVENTORY</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2 EMPLOYEE">
+                            <div class="card menuele" style="width: 100px ; height: 140px"
+                                 onclick="window.location.assign('http://localhost:8080/employee')">
+                                <img class="card-img-top" src="resources/image/cart/image2/employee.jpg"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">EMPLOYEE</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2 USER">
+                            <div class="card menuele" style="width: 100px ; height: 140px"
+                                 onclick="window.location.assign('http://localhost:8080/user')">
+                                <img class="card-img-top" src="resources/image/cart/image2/employee.jpg"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">USER</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2 PRIVILAGE">
+                            <div class="card menuele" style="width: 100px ; height: 140px"
+                                 onclick="window.location.assign('http://localhost:8080/privilage')">
+                                <img class="card-img-top" src="resources/image/cart/image2/previllege.jpg"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">PREVILLAGE</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <!--<div class="card menuele" style="width: 100px ; height: 140px"
+                                 onclick="window.location.assign('http://localhost:8080/supplierpayment')">
+                                <img class="card-img-top" src="resources/image/cart/image2/grn.png"
+                                     style="width: content-box " alt="Card image cap">
+                                <h5 class="card-title text-center">GRN</h5>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Settings Modal-->
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog"
+     aria-labelledby="settingsModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" id="modalContent">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle"><i
+                        class="fas fa-cog"></i> Settings</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form id="changePasswordForm" onsubmit="return false">
+                    <div class="form-row">
+                        <!-- Username -->
+                        <div class="form-group col-md-12">
+                            <label for="txtUsernameView" class="text-blue">
+                                <b>Username</b>
+                            </label>
+                            <div readonly class="form-control-plaintext"
+                                 id="txtUsernameView"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- Current Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtCurrentPassword"
+                                   class="text-blue"><b>Current Password</b> <i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtCurrentPassword"
+                                   onkeyup="textFieldBinder(txtCurrentPassword, '^[0-9]{5,}$', 'changePassword', 'currentPassword', 'oldChangePassword')">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- New Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtNewPassword" class="text-blue"><b>New
+                                Password</b><i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtNewPassword"
+                                   onkeyup="passwordFieldBinder(txtNewPassword, txtConfirmPassword, '^[0-9]{5,}$', 'changePassword', '', 'oldChangePassword')">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- Confirm Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtConfirmPassword"
+                                   class="text-blue"><b>Confirm
+                                Password</b><i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtConfirmPassword"
+                                   onkeyup="passwordFieldBinder(txtNewPassword, txtConfirmPassword, '^[0-9]{5,}$', 'changePassword', 'newPassword', 'oldChangePassword')">
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="brnClosechnagepasswordmodle" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary"
+                        onclick="btnSaveChangePasswordMC()">Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="requestModel" tabindex="-1" role="dialog"
+     aria-labelledby="settingsModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i
+                        class="fas fa-cog"></i> Appointment View</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-striped" id="requestutable">
+                    <thead>
+                    <tr>
+                        <th colspan="6" class="text-center font-weight-bold"><h1>KM Medical Center</h1></th>
+                    </tr>
+                    <tr>
+                        <th>
+                            No. 213/D, A/8, Panadura.
+                        </th>
+                        <th></th>
+                        <th>
+                            Tel : 038-5681122
+                        </th>
+                        <th></th>
+                        <th>
+                            Email : kmmedicalcenter@gmail.com
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Appointment No :</th>
+                        <td id="tdAno">KMCA2100002</td>
+                        <td></td>
+                        <td></td>
+                        <th>Chanaling No :</th>
+                        <td id="tdCno">01</td>
+                    </tr>
+                    <tr>
+                        <th>Date :</th>
+                        <td id="tdAdatetime">2021-03-11 7:45:00</td>
+                        <td></td>
+                        <td></td>
+                        <th>Patient Age :</th>
+                        <td id="tdPAge">25</td>
+                    </tr>
+                    <tr>
+                        <th>Patient Name :</th>
+                        <td id="tdCusName">Sashikala</td>
+                        <td></td>
+                        <td></td>
+                        <th>Gender :</th>
+                        <td id="tdPGender">Femane</td>
+                    </tr>
+
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>Doctor Name :</th>
+                        <td id="tdDName" colspan="2"></td>
+                        <td></td>
+                        <th></th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6"></td>
+                    </tr>
+
+                    </tfoot>
+
+                </table>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="btnCheckMC()">Check</button>
+                    <button type="button" class="btn btn-success" onclick="btnPrintMC()">Print</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--notification Model-->
+<div class="container demo">
+    <div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+        <div class="modal-dialog notification-dialog" role="document">
+            <div class="modal-content notification-content">
+                <div class="modal-header">
+                    <h1><span class="badge badge-danger align-content-center">Notification</span></h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body" id="" style="background-color: #F5F5F5">
+
+                    <div class="card">
+                        <div class="card-header" id="expiringcheques">
+                        </div>
+                        <div class="card-body">
+                            <div id="divexpiringcheques">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div CLASS="card-header" id="expiringItems">
+
+                        </div>
+                        <div class="card-body">
+                            <div id="divexpireingitems">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    monthlyexpenses = httpRequest("/report/salesthismonth", "GET");
+    lblThisMonthExpense.innerHTML = parseFloat(monthlyexpenses).toFixed(2);
+
+    monthlyincome = httpRequest("/report/incomesthismonth", "GET");
+    lblThisMonthIncome.innerHTML = parseFloat(monthlyincome).toFixed(2);
+
+    ordercount = httpRequest("/report/orderscount", "GET");
+    lblOrderCount.innerHTML = ordercount;
+
+    customercount = httpRequest("/report/customercount", "GET");
+    lblCustomerCount.innerHTML = customercount;
+
+    mostsellingitems = httpRequest("/report/mostsellingitems", "GET");
+
+    lowinventories = httpRequest("/batch/getlowInventory", "GET");
+
+    var chartLables = new Array();
+    var chartData = new Array();
+
+    var tableData = new Array();
+
+    for (var index in mostsellingitems) {
+        chartLables.push(mostsellingitems[index][0]);
+        chartData.push(mostsellingitems[index][1]);
+
+        //totalamount = parseFloat(totalamount) + parseFloat(netsales[index][4]);
+    }
+
+    for (var index in lowinventories) {
+        var tdata = new Object();
+
+        if (lowinventories[index].item_id.rop >= lowinventories[index].availableqty) {
+            tdata.itemname = lowinventories[index].item_id.itemname;
+            tdata.amount = lowinventories[index].availableqty;
+            tdata.supplier = lowinventories[index].supplier_id.companyfullname;
+            tableData.push(tdata);
+        }
+    }
+
+    fillTable('tblLowInventory', tableData, fillForm, btnDeleteMC, viewitem);
+
+    console.log(chartLables);
+    console.log(chartData);
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: chartLables,
+            datasets: [{
+                label: 'count',
+                data: chartData,
+                backgroundColor: getRandomColorHex(chartLables.length),
+                borderWidth: 1,
+                fill: false,
+                borderColor: '#0036B3',
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    function fillForm() {
+
+    }
+
+    function btnDeleteMC() {
+    }
+
+    function viewitem() {
+    }
+
+
+    //notifications
+    function getrequest() {
+        divexpiringcheques.innerHTML = "";
+        expirecheques = new Array();
+        // notification
+        expirecheques = httpRequest("/report/expirecheque", "GET");
+        if (expirecheques.length != 0) {
+            var row = document.createElement('div');
+            row.classList.add('row');
+            var col12 = document.createElement('div');
+            col12.classList.add('col-md-12');
+            var h4 = document.createElement('h4')
+            var span = document.createElement('span')
+            span.classList.add('badge');
+            span.classList.add('badge-secondary');
+            span.innerHTML = "- Expiring Cheques -";
+            var hr = document.createElement('hr');
+            hr.classList.add('solid');
+            h4.appendChild(span);
+            col12.appendChild(h4);
+            col12.appendChild(hr);
+            row.appendChild(col12);
+            expiringcheques.appendChild(row);
+            for (var index in expirecheques) {
+                var row = document.createElement('div');
+                row.classList.add('row');
+                row.classList.add('pl-1');
+                row.classList.add('pr-1');
+                //row.style.backgroundColor = 'rgba(238,231,231,0.4)';
+                var col8 = document.createElement('div');
+                col8.classList.add('col-md-12');
+                var alertdiv = document.createElement('div');
+                alertdiv.classList.add('alert');
+                alertdiv.classList.add('alert-danger')
+                var role = document.createAttribute('role');
+                role.value = "alert";
+                var span = document.createElement('span');
+                span.innerHTML = "Has To Pay " + toDecimal(expirecheques[index][2]) + " For " + expirecheques[index][0];
+                alertdiv.appendChild(span);
+                col8.appendChild(alertdiv)
+                row.appendChild(col8);
+                divexpiringcheques.appendChild(row);
+
+            }
+
+        }
+
+        divexpireingitems.innerHTML = "";
+        expireitemsList = new Array();
+        // notification
+        expireitemsList = httpRequest("/report/expireitems", "GET");
+        if (expireitemsList.length != 0) {
+            var row = document.createElement('div');
+            row.classList.add('row');
+            var col12 = document.createElement('div');
+            col12.classList.add('col-md-12');
+            var h4 = document.createElement('h4')
+            var span = document.createElement('span')
+            span.classList.add('badge');
+            span.classList.add('badge-secondary');
+            span.innerHTML = "- Expiring Items -";
+            var hr = document.createElement('hr');
+            hr.classList.add('solid');
+            h4.appendChild(span);
+            col12.appendChild(h4);
+            col12.appendChild(hr);
+            row.appendChild(col12);
+            expiringItems.appendChild(row);
+
+            for (var index in expireitemsList) {
+                var row = document.createElement('div');
+                row.classList.add('row');
+                row.classList.add('pl-1');
+                row.classList.add('pr-1');
+                //row.style.backgroundColor = 'rgba(238,231,231,0.4)';
+                var col8 = document.createElement('div');
+                col8.classList.add('col-md-12');
+                var alertdiv = document.createElement('div');
+                alertdiv.classList.add('alert');
+                alertdiv.classList.add('alert-danger')
+                var role = document.createAttribute('role');
+                role.value = "alert";
+                var span = document.createElement('span');
+                span.innerHTML = expireitemsList[index][0] + " -> " + expireitemsList[index][1] + "->" + "( " + expireitemsList[index][2] + " )" + " Expiring Soon...";
+                alertdiv.appendChild(span);
+                col8.appendChild(alertdiv)
+                row.appendChild(col8);
+                divexpireingitems.appendChild(row);
+            }
+        }
+
+    }
+
+    getrequest();
+
+    /*
+
+    function loadPrintView(ano) {
+        appoitnment = httpRequest("../appoinment/byno?no=" + ano, "GET");
+        tdAno.innerHTML = appoitnment.no;
+        tdCno.innerHTML = appoitnment.chanalingnumber;
+        tdCusName.innerHTML = appoitnment.patientId.patientTypeId.name + " " + appoitnment.patientId.fname;
+        tdAdatetime.innerHTML = appoitnment.appoinmentdate + " " + appoitnment.apinmenttime;
+        var now = new Date();
+        var dob = new Date(appoitnment.patientId.dob);
+        var age = now.getTime() - dob.getTime();
+        tdPAge.innerHTML = Math.floor(age / (1000 * 60 * 60 * 24 * 365.25)) + " Y";
+        tdPGender.innerHTML = appoitnment.patientId.genderId.name;
+        tdDName.innerHTML = "Dr. " + appoitnment.doctorId.fname;
+    }
+
+    function btnPrintMC(request) {
+
+        var newwindow = window.open();
+        formattab = requestutable.outerHTML;
+
+        newwindow.document.write("" +
+            "<html>" +
+            "<head>" +
+            "<link rel='stylesheet' href='resourse/bootstrap/css/bootstrap.min.css'/>" +
+            "</head>" +
+            "<body style='border: 2px solid black; padding: 10px'>" +
+            "<div>" + formattab + "</div>" +
+            "</body>" +
+            "</html>");
+        setTimeout(function () {
+            newwindow.print();
+            newwindow.close();
+        }, 100);
+
+    }
+
+    function btnCheckMC() {
+        var response = httpRequest("/request", "PUT", request);
+        if (response == "0") {
+            swal({
+                title: "Check Successfully...!",
+                text: "\n\n Status change to Checked",
+                icon: "success",
+                button: false,
+                timer: 1200,
+            });
+            getrequest();
+            $('#requestModel').modal('hide');
+        } else {
+            swal({
+                title: "You have following errors...!",
+                text: "\n\n" + response,
+                icon: "error",
+                button: true,
+            });
+        }
+
+    }*/
+
+</script>
+</body>
+</html>

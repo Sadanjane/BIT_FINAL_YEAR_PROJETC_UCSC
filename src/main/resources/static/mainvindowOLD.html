@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BIT Project 2021 : Dashboard </title>
+
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+
+    <script defer src="resources/fontawesome/js/solid.js"></script>
+    <script defer src="resources/fontawesome/js/fontawesome.js"></script>
+
+
+    <script src="resources/jquery/jquery-3.4.1.min.js"></script>
+    <script src="resources/jquery/popper.min.js"></script>
+    <script src="resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="resources/script/common.bitproject.js"></script>
+    <script src="resources/script/mainWindow.js"></script>
+
+    <link rel="stylesheet" href="resources/style/home.css">
+    <link rel="stylesheet" href="resources/style/common.css">
+    <link rel="stylesheet" href="resources/style/style3.css">
+    <script src="resources/script/sweetalert.min.js"></script>
+
+    <link href='resources/calendar/main.css' rel='stylesheet' />
+    <script src='resources/calendar/main.js'></script>
+
+    <script type="text/javascript">
+
+        var someValue = window;
+        console.log(someValue)
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+
+            getrequest();
+
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth'
+            });
+            calendar.render();
+        });
+    </script>
+
+
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div id="dismiss">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+
+        <div class="sidebar-header text-center">
+            <h3>BIT Project 2021 </h3>
+        </div>
+
+        <ul class="list-unstyled components">
+
+            <li>
+                <a href="http://localhost:8080/mainwindow">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-briefcase"></i>
+                    Administration
+                </a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li class="EMPLOYEE">
+                        <a href="http://localhost:8080/employee">Employee</a>
+                    </li>
+                    <li class="USER">
+                        <a href="http://localhost:8080/user">User</a>
+                    </li>
+                    <li class="PRIVILAGE">
+                        <a href="http://localhost:8080/privilage">privilage</a>
+                    </li>
+                    <li class="DOCTOR">
+                        <a href="http://localhost:8080/doctor">Doctor</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#productSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-briefcase"></i>
+                    Product
+                </a>
+                <ul class="collapse list-unstyled" id="productSubmenu">
+                    <li class="ITEM">
+                        <a href="http://localhost:8080/item">Item</a>
+                    </li>
+                    <li class="BRAND">
+                        <a href="http://localhost:8080/brand">Brand</a>
+                    </li>
+                    <li class="BATCH">
+                        <a href="http://localhost:8080/batch">Batch</a>
+                    </li>
+                    <li class="INVENTRY">
+                        <a href="http://localhost:8080/iteminventry">Item Inventory</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li>
+                <a href="#purchaseSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-briefcase"></i>
+                    Purchase
+                </a>
+                <ul class="collapse list-unstyled" id="purchaseSubmenu">
+                    <li class="SUPPLIER">
+                        <a href="http://localhost:8080/supplier"> Supplier </a>
+                    </li>
+                    <li class="PURCHASEORDER">
+                        <a href="http://localhost:8080/porder"> Purchase Order </a>
+                    </li>
+                    <li class="GRN">
+                        <a href="http://localhost:8080/gen"> GRN </a>
+                    </li>
+                    <li class="GRNRETURN">
+                        <a href="http://localhost:8080/grnreturn"> GRN Return </a>
+                    </li>
+                    <li class="SUPPLIERPAYMENT">
+                        <a href="http://localhost:8080/spayment"> Supplier Payment </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Dropdown -->
+            <li>
+                <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-briefcase"></i>
+                    Appointment
+                </a>
+                <ul class="collapse list-unstyled" id="salesSubmenu">
+                    <li class="PATIENT">
+                        <a href="http://localhost:8080/patient"> Patient </a>
+                    </li>
+                    <li class="APPOINTMENT">
+                        <a href="http://localhost:8080/appoinment"> Appointment </a>
+                    </li>
+                    <li class="PRESCRIPTION">
+                        <a href="http://localhost:8080/prescription"> Prescription </a>
+                    </li>
+                    <li class="INVOICE">
+                        <a href="http://localhost:8080/cinvoice"> Invoice </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li>
+                <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-briefcase"></i>
+                    Report
+                </a>
+                <ul class="collapse list-unstyled" id="reportSubmenu">
+                    <li>
+                        <a href="http://localhost:8080/lowinventory"> Low Inventory </a>
+                    </li>
+                    <li>
+                        <a href="http://localhost:8080/reportinvoice"> Daily Invoice </a>
+                    </li>
+                    <li>
+                        <a href="http://localhost:8080/reportprofit"> Profit </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+
+            <div class="container-fluid">
+                <div class="float-left">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info btn-lg">
+                        <i class="fas fa-align-left"></i>
+                        <span></span>
+                    </button>
+
+                    <button type="button" class="btn btn-info btn-lg ml-3 rounded-circle">
+                        <a href="http://localhost:8080/mainwindow"> <i class="fa fa-home"></i></a>
+                        <span></span>
+                    </button>
+
+
+                </div>
+                <div class="">
+                    <h2 class="text-white font-weight-bold">    BIT Project 2021 </h2>
+                </div>
+                <div class="float-right" style="margin-top: 10px">
+                    <p class="font-weight-bold text-white"> Loged as :  <span id="spnDesignation"> </span> </p>
+                </div>
+                <form class="form-inline my-2 my-lg-0 mr-2 float-right">
+
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav ">
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" style="width: 160px" href="#"
+                                   id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <img id="profileImage" class="profileImage">
+                                    <p class="loggedUserNameField d-inline" id="lblLogUser">123456</p>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="#"><i class="far fa-sliders-v"></i> View Profile</a>
+                                    <a class="dropdown-item" href="#" data-toggle="modal"
+                                       data-target="#settingsModal"><i class="far fa-sliders-v"></i> Change Password</a>
+                                    <a class="dropdown-item" href="#" onclick="btnSignoutMC()"><i
+                                            class="fas fa-sign-out-alt"></i> Sign Out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </form>
+            </div>
+
+        </nav>
+
+        <!-- Content -->
+        <div class="container-fluid ">
+
+            <div class="row">
+                <div class="col-md-7" style="background-color: rgba(196,192,192,0.4);">
+                    <div class="row mt-3">
+                        <div class="col-md-4 text-white" style="max-width: 18rem;"
+                             onclick="window.location.assign('http://localhost:8080/employee')">
+                            <div id="employeecart" style="width:150px; height:130px"></div>
+                            <div class="card card-footer bg-primary text-white text-center p-0"
+                                 style="width:150px;height:30px"><h5>
+                                Emplyee</h5></div>
+                        </div>
+                        <div class="col-md-4 text-center" style="max-width: 18rem;"
+                             onclick="window.location.assign('http://localhost:8080/user')">
+                            <div id="usercart" style="width:150px; height:130px"></div>
+                            <div class="card card-footer bg-primary text-white p-0" style="width:150px;height:30px"><h5>
+                                User </h5></div>
+                        </div>
+                        <div class="col-md-4 text-center " style="max-width: 18rem;"
+                             onclick="window.location.assign('http://localhost:8080/privilage')">
+                            <div id="privilagecart" style="width:150px; height:130px"></div>
+                            <div class="card card-footer bg-primary text-white p-0" style="width:150px;height:30px"><h5>
+                                Privilage </h5></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4 ml-5" style="margin-right: 10px;">
+                    <div class="row" style="background-color: rgba(191,188,188,0.3)">
+                        <div class="container-fluid">
+                            <h3 class="text-center font-weight-bold">Notification</h3>
+                        </div>
+                    </div>
+                    <div class="row mt-1" style="background-color: rgba(172,168,168,0.67)">
+                        <div class="container-fluid" id="divnotification"></div>
+                    </div>
+
+                    <div class="row mt-4" style="background-color: rgba(172,168,168,0.67);">
+                        <div class="container-fluid p-2" style="height: 550px">
+                            <div id='calendar' ></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div id="err" style="margin-top: 200px"></div>
+    </div>
+</div>
+
+
+<div class="overlay"></div>
+<div class="logoutray">
+
+</div>
+
+<!-- Settings Modal-->
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog"
+     aria-labelledby="settingsModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" id="modalContent">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle"><i
+                        class="fas fa-cog"></i> Settings</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form id="changePasswordForm" onsubmit="return false">
+                    <div class="form-row">
+                        <!-- Username -->
+                        <div class="form-group col-md-12">
+                            <label for="txtUsernameView" class="text-blue">
+                                <b>Username</b>
+                            </label>
+                            <div readonly class="form-control-plaintext"
+                                 id="txtUsernameView"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- Current Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtCurrentPassword"
+                                   class="text-blue"><b>Current Password</b> <i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtCurrentPassword"
+                                   onkeyup="textFieldBinder(txtCurrentPassword, '^[0-9]{5,}$', 'changePassword', 'currentPassword', 'oldChangePassword')">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- New Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtNewPassword" class="text-blue"><b>New
+                                Password</b><i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtNewPassword"
+                                   onkeyup="passwordFieldBinder(txtNewPassword, txtConfirmPassword, '^[0-9]{5,}$', 'changePassword', '', 'oldChangePassword')">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- Confirm Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtConfirmPassword"
+                                   class="text-blue"><b>Confirm
+                                Password</b><i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtConfirmPassword"
+                                   onkeyup="passwordFieldBinder(txtNewPassword, txtConfirmPassword, '^[0-9]{5,}$', 'changePassword', 'newPassword', 'oldChangePassword')">
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="brnClosechnagepasswordmodle" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary"
+                        onclick="btnSaveChangePasswordMC()">Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="requestModel" tabindex="-1" role="dialog"
+     aria-labelledby="settingsModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" >
+            <div class="modal-header">
+                <h5 class="modal-title"><i
+                        class="fas fa-cog"></i> Appointment View</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-striped" id="requestutable">
+                    <thead>
+                        <tr>
+                            <th colspan="6" class="text-center font-weight-bold"> <h1>KM Medical Center</h1></th>
+                        </tr>
+                        <tr>
+                            <th>
+                                No. 213/D, A/8, Panadura.
+                            </th>
+                            <th></th>
+                            <th>
+                                Tel : 038-5681122
+                            </th>
+                            <th></th>
+                            <th>
+                                Email : kmmedicalcenter@gmail.com
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>Appointment No :</th>
+                        <td id="tdAno">KMCA2100002</td>
+                        <td></td>
+                        <td></td>
+                        <th>Chanaling No :</th>
+                        <td id="tdCno">01</td>
+                    </tr>
+                    <tr>
+                        <th>Date :</th>
+                        <td id="tdAdatetime">2021-03-11 7:45:00</td>
+                        <td></td>
+                        <td></td>
+                        <th>Patient Age :</th>
+                        <td id="tdPAge">25</td>
+                    </tr>
+                    <tr>
+                        <th>Patient Name :</th>
+                        <td id="tdCusName">Sashikala</td>
+                        <td></td>
+                        <td></td>
+                        <th>Gender :</th>
+                        <td id="tdPGender">Femane</td>
+                    </tr>
+
+                    </tbody>
+                    <tfoot >
+                    <tr>
+                        <th>Doctor Name :</th>
+                        <td id="tdDName" colspan="2"></td>
+                        <td></td>
+                        <th></th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6"></td>
+                    </tr>
+
+                    </tfoot>
+
+                </table>
+                <div class="modal-footer">
+                    <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button"  class="btn btn-primary"  onclick="btnCheckMC()">Check</button>
+                    <button type="button"  class="btn btn-success"  onclick="btnPrintMC()">Print</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function getrequest() {
+        divnotification.innerHTML = "";
+        appointntmentlist = new Array();
+            // notification
+        //  appointntmentlist = httpRequest("../appoinment/listwithpending", "GET");
+        if(appointntmentlist.length != 0){
+            for(var index in appointntmentlist){
+                var row = document.createElement('div');
+                row.classList.add('row');
+                row.classList.add('p-2');
+                row.style.backgroundColor =  'rgba(238,231,231,0.4)';
+                var col8 = document.createElement('div');
+                col8.classList.add('col-md-8');
+                var col4 = document.createElement('div');
+                col4.classList.add('col-md-4');
+                var label = document.createElement('label');
+                label.classList.add('font-weight-bold');
+                label.innerHTML = appointntmentlist[index].no;
+                col8.appendChild(label);
+
+                var button = document.createElement('button');
+                button.classList.add('btn');
+                button.classList.add('btn-sm');
+                button.classList.add('btn-outline-info');
+                button.innerHTML = '<i class="fa fa-print" aria-hidden="true"></i>';
+                button.setAttribute('data-toggle','modal')
+                button.setAttribute('data-target','#requestModel')
+                button.onclick=function(){
+                    loadPrintView(this.parentNode.parentNode.firstChild.children[0].innerHTML);
+                };
+                col4.appendChild(button);
+                row.appendChild(col8);
+                row.appendChild(col4);
+                divnotification.appendChild(row);
+
+            }
+
+        }
+
+    }
+    function loadPrintView(ano) {
+        appoitnment = httpRequest("../appoinment/byno?no="+ano, "GET");
+        tdAno.innerHTML = appoitnment.no;
+        tdCno.innerHTML = appoitnment.chanalingnumber;
+        tdCusName.innerHTML =  appoitnment.patientId.patientTypeId.name+ " " +appoitnment.patientId.fname;
+        tdAdatetime.innerHTML = appoitnment.appoinmentdate + " "+appoitnment.apinmenttime;
+        var now = new Date();
+        var dob = new Date(appoitnment.patientId.dob);
+        var age = now.getTime()-dob.getTime();
+        tdPAge.innerHTML = Math.floor(age / (1000 * 60 * 60 * 24 * 365.25)) + " Y";
+        tdPGender.innerHTML = appoitnment.patientId.genderId.name;
+        tdDName.innerHTML = "Dr. " + appoitnment.doctorId.fname;
+    }
+
+    function btnPrintMC(request) {
+
+        var newwindow=window.open();
+        formattab = requestutable.outerHTML;
+
+        newwindow.document.write("" +
+            "<html>" +
+            "<head>" +
+            "<link rel='stylesheet' href='resourse/bootstrap/css/bootstrap.min.css'/>" +
+            "</head>" +
+            "<body style='border: 2px solid black; padding: 10px'>" +
+            "<div>"+ formattab+"</div>"+
+            "</body>" +
+            "</html>");
+    setTimeout(function () {newwindow.print(); newwindow.close();},100) ;
+
+    }
+
+    function btnCheckMC() {
+        var response = httpRequest("/request", "PUT", request);
+        if (response == "0") {
+            swal({
+                title: "Check Successfully...!",
+                text: "\n\n Status change to Checked",
+                icon: "success",
+                button: false,
+                timer: 1200,
+            });
+            getrequest();
+            $('#requestModel').modal('hide');
+        } else {
+            swal({
+                title: "You have following errors...!",
+                text: "\n\n" + response,
+                icon: "error",
+                button: true,
+            });
+        }
+
+    }
+
+</script>
+</body>
+</html>

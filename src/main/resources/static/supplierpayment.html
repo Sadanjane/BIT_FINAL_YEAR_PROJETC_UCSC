@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel=" icon" type="image/png" href="resources/image/favicon.png">
+    <title>OMEL Lanka : Supplier Payment Management </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/fontawesome/css/all.css">
+
+
+    <style>
+
+        .bg {
+            background-image: url("resources/image/supermarketbackground/supermarketbackground.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .select2-selection {
+            /*set with, height*/
+            width: 200px !important;
+            height: 38px !important;
+            padding-top: 4px;
+        }
+
+        .select2-selection__arrow {
+            margin-top: 6px !important;
+            margin-left: 10px !important;
+        }
+
+        .select2-selection__rendered {
+            padding-right: 5px !important;
+        }
+
+        .table-container {
+            width: auto;
+            overflow-x: scroll !important;
+        }
+
+        .tooltip-inner {
+            background-color: #f00;
+        }
+
+        .star {
+            font-size: 24px;
+            color: red;
+            font-weight: bold;
+        }
+
+        /*.card {
+            background-color: rgba(56, 125, 113, 1);
+        }*/
+
+        .btn-circle.btn-md {
+            width: 50px;
+            height: 50px;
+            padding: 7px 10px;
+            border-radius: 25px;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .btn-circle.btn-xl {
+            width: 50px;
+            height: 50px;
+
+            border-radius: 35px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+    </style>
+
+
+    <script defer src="resources/fontawesome/js/solid.js"></script>
+    <script defer src="resources/fontawesome/js/fontawesome.js"></script>
+
+
+    <script src="resources/jquery/jquery-3.4.1.min.js"></script>
+    <script src="resources/jquery/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="resources/jquery/popper.min.js"></script>
+    <script src="resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="resources/script/common.bitproject.js"></script>
+    <script src="resources/script/mainWindow.js"></script>
+    <script src="resources/script/innertablefunctions.js"></script>
+    <script src="supplierpayment.js"></script>
+
+
+    <link rel="stylesheet" href="resources/style/home.css">
+    <link rel="stylesheet" href="resources/style/common.css">
+    <link rel="stylesheet" href="resources/style/style4NEW.css">
+    <script src="resources/script/sweetalert.min.js"></script>
+
+    <!-- select 2 -->
+    <link rel="stylesheet" href="resources/select2/css/select2.min.css">
+    <script src="resources/select2/js/select2.min.js"></script>
+
+
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+
+        <div id="dismiss">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+
+        <div class="sidebar-header text-center" >
+            <h3>OMEL Supermartket</h3>
+            <strong>WELCOME</strong>
+        </div>
+
+        <div class="sidebar-header list-unstyled text-center">
+            <a href="#"><img id="profileImage" class="profileImage"></a><br>
+            <br>
+            <label><span id="lblLogUser"> </span></label>
+            <br>
+            <label>Loged as : <span id="spnDesignation"> </span></label>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li class="">
+                <a href="http://localhost:8080/mainwindow">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="#adminSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-briefcase"></i>
+                    Administration
+                </a>
+                <ul class="collapse list-unstyled" id="adminSubMenu">
+                    <li class="EMPLOYEE">
+                        <a href="http://localhost:8080/employee">EMPLOYEE</a>
+                    </li>
+                    <li class="PRIVILAGE">
+                        <a href="http://localhost:8080/privilage">PREVILLAGE</a>
+                    </li>
+                    <li class="USER">
+                        <a href="http://localhost:8080/user">USER</a>
+                    </li>
+                </ul>
+
+                <a href="#purchaseSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fa fa-credit-card"></i>
+                    Purchase
+                </a>
+                <ul class="collapse list-unstyled" id="purchaseSubmenu">
+                    <li class="SUPPLIER">
+                        <a href="http://localhost:8080/supplier">SUPPLIER</a>
+                    </li>
+                    <li class="QUOTATTIONREQ">
+                        <a href="http://localhost:8080/quatationrequest">QUOTATION REQ</a>
+                    </li>
+                    <li class="QUOTATION">
+                        <a href="http://localhost:8080/quatation">QUITATION</a>
+                    </li>
+                    <li class="SUPPLIERRETURN">
+                        <a href="http://localhost:8080/supplierreturn">SUPPLIER RETURN</a>
+                    </li>
+                    <li class="PORDER">
+                        <a href="http://localhost:8080/purchaseorder">PURCHASE ORDER</a>
+                    </li>
+                    <li class="active GRN ">
+                        <a href="http://localhost:8080/grn">GRN</a>
+                    </li>
+                    <li class="SPAYMENT">
+                        <a href="http://localhost:8080/supplierpayment">SUP PAYMENT</a>
+                    </li>
+                </ul>
+
+                <a href="#itemSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fa fa-cart-plus"></i>
+                    ITEM
+                </a>
+                <ul class="collapse list-unstyled" id="itemSubMenu">
+                    <li class="ITEM">
+                        <a href="http://localhost:8080/item">ITEM</a>
+                    </li>
+                    <li class="BATCH">
+                        <a href="http://localhost:8080/batch">BATCH</a>
+                    </li>
+                    <li class="INVENTORY">
+                        <a href="http://localhost:8080/inventory">INVENTORY</a>
+                    </li>
+                </ul>
+
+                <!--CUSTOMER-->
+                <a href="#customerSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fa fa-user"></i>
+                    Customer
+                </a>
+                <ul class="collapse list-unstyled" id="customerSubMenu">
+                    <li class="CUSTOMER">
+                        <a href="http://localhost:8080/customer">CUSTOMER REG</a>
+                    </li>
+                    <li class="CUSTOMERORDER">
+                        <a href="http://localhost:8080/customerorder">CUSTOMER ORDER</a>
+                    </li>
+                    <li class="INVOICE">
+                        <a href="http://localhost:8080/invoice">INVOICE</a>
+                    </li>
+                </ul>
+
+
+            </li>
+
+            <li class="dropdown-divider"></li>
+            <!--reports-->
+            <li>
+                <a href="#reportssubmenu" id="reports" data-toggle="collapse" aria-expanded="false"
+                   class="dropdown-toggle">
+                    <i class="fa fa-chart-line" ></i>
+                    Reports
+                </a>
+                <ul class="collapse list-unstyled" id="reportssubmenu">
+                    <li class="REPORT">
+                        <a href="http://localhost:8080/incomereport">Income Report</a>
+                    </li>
+                    <li class="REPORT">
+                        <a href="http://localhost:8080/expencereport">Expense Report</a>
+                    </li>
+                    <li class="REPORT">
+                        <a href="http://localhost:8080/areusamountreport">Areus Amount Report</a>
+                    </li>
+                    <li class="REPORT">
+                        <a href="http://localhost:8080/itemsalereport">Areus Amount Report</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <!--setting veiw profile , sign out-->
+            <li class="dropdown-divider"></li>
+
+            <li>
+                <a href="#settingssubmenu" id="settings" data-toggle="collapse" aria-expanded="false"
+                   class="dropdown-toggle">
+                    <i class="fa fa-cog"></i>
+                    Settings
+                </a>
+                <ul class="collapse list-unstyled" id="settingssubmenu">
+                    <!--<li class="VIEWPROFILE">
+                        <a href="#">View Profile</a>
+                    </li>-->
+                    <li class="CHANGEPASS">
+                        <a href="#"
+                           data-toggle="modal"
+                           data-target="#settingsModal">Change Password</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="dropdown-divider"></li>
+
+            <li>
+                <a href="#" id="signout" data-toggle="collapse" aria-expanded="false" onclick="btnSignoutMC()">
+                    <i class="fa fa-sign-out-alt"></i>
+                    Sign Out
+                </a>
+            </li>
+
+            <li class="dropdown-divider"></li>
+        </ul>
+
+        <!--<ul class="list-unstyled CTAs text-center">
+            <li>
+                <div class="text-center">
+                    <a href="#"><img id="profileImage" class="profileImage "></a><br>
+                </div>
+                <div tyle="margin-top: 5px">
+                    <div id="lblLogUser"></div> <p class="font-weight-bold text-white"> Loged as : <span id="spnDesignation"> </span></p>
+                </div>
+            </li>
+        </ul>-->
+
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+            <div class="container-fluid">
+                <div class="float-left">
+                    <button type="button" id="sidebarCollapse" class="btn btn-warning btn-lg btn-block" >
+                        <i class="fa fa-sitemap" aria-hidden="true"></i>
+                        <span></span>
+                    </button>
+                </div>
+
+                <div class="">
+                    <h2 class="text-white font-weight-bold"> SUPPLIER PAYMENT Management </h2>
+                </div>
+            </div>
+
+        </nav>
+        <!-- Content -->
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="border-radius: 30px">
+                        <div class="card-body">
+
+                            <div class="row shadow-sm mb-2 mr-2 ml-2" style="background-color: #37474F;  color: #E0E0E0 ; height: 60px ">
+                                <div class="col-md-6 mt-2">
+                                    <button class="btn btn-warning "  data-toggle="modal" data-target="#mainform" style="width: 25%" type="submit">
+                                        <i class='fa fa-plus-square mr-2'></i>Add New
+                                    </button>
+                                    <input type="button" class="btn font-weight-bold  btn-info" value="Print Table"
+                                           id="btnPrintTable" style="width: 25%" onclick="btnPrintTableMC()"/>
+                                </div>
+                                <div class="col-md-6 mt-2">
+
+                                    <input placeholder="Search" class="form-control float-right" type="text"
+                                           id="txtSearchName"/>
+
+                                </div>
+                            </div>
+
+                            <div class="row formcontent" id="divTable">
+                                <div class="col-md-12">
+                                    <!-- table body -->
+                                    <div class="table-responsive" id="tableParent" class="table-container ml-2">
+                                        <script>
+
+                                            var metadata = [
+                                                {
+                                                    name: 'Bill No',
+                                                    search: true,
+                                                    datatype: 'text',
+                                                    property: 'billno'
+                                                },
+                                                {
+                                                    name: 'Supplier',
+                                                    search: true,
+                                                    datatype: 'text',
+                                                    property: 'supplier_id.companyfullname'
+                                                },
+                                                {
+                                                    name: 'GRN',
+                                                    search: true,
+                                                    datatype: 'text',
+                                                    property: 'grn_id.grncode'
+                                                },
+                                                {
+                                                    name: 'Paid Amount',
+                                                    search: true,
+                                                    datatype: 'text',
+                                                    property: 'paidamount'
+                                                },
+                                                {
+                                                    name: 'Balance Amount',
+                                                    search: true,
+                                                    datatype: 'text',
+                                                    property: 'balanceamount'
+                                                },
+                                                {
+                                                    name: 'Payment Method',
+                                                    search: true,
+                                                    datatype: 'text',
+                                                    property: 'paymentmethod_id.name'
+                                                },
+                                                {
+                                                    name: 'Added Date',
+                                                    search: true,
+                                                    datatype: 'text',
+                                                    property: 'addeddate'
+                                                },
+
+                                            ];
+                                            table("tableParent", "tblSPayment", metadata, true);
+
+                                        </script>
+
+                                        <div>
+                                            <div style="display: inline-block ; float: left">
+                                                <select class="form-control input" id="cmbPageSize"
+                                                        style="width: 80px;">
+                                                    <option selected value="10">10</option>
+                                                    <option value="15">15</option>
+                                                    <option value="30">30</option>
+                                                    <option value="500">500</option>
+                                                    <option value="1000">1000</option>
+                                                </select>
+                                                <script>
+                                                    cmbPageSize.onchange = function chnagePageSize() {
+                                                        activepage = 1;
+                                                        btnSearchMC();
+                                                    };
+                                                </script>
+                                            </div>
+                                            <div style="display: inline-block; margin-left: 10px;">
+                                                <ul id="pagination" class="pagination"></ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row formcontent">
+                                <div class="col-md-12">
+                                    <div id="err">
+                                        <h3>Error Log</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--home button-->
+            <a class="floatHome" href="http://localhost:8080/mainwindow">
+                <i class="fa fa-home my-float float-icon"  aria-hidden="true"></i>
+            </a>
+
+            <!--menu button-->
+            <a class="float" data-toggle="modal" data-target="#menuModal">
+                <i class="fa fa-th-large my-float float-icon"  aria-hidden="true"></i>
+            </a>
+            <!--Menu Modal-->
+            <div class="modal fade" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color:#F9AA33 ; color: #f8f8ff">
+                            <h5 class="modal-title">MENU ITEMS</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class=modal-body" style="padding: 0px">
+                            <div class="p-4">
+                                <div class="row mt-1 ml-1 mb-2 ITEM">
+                                    <div class="col-md-2 ">
+                                        <div class="card menuele" style="width: 100px ; height: 170px"
+                                             onclick="window.location.assign('http://localhost:8080/item')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/item.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">ITEM</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 SUPPLIER">
+                                        <div class="card menuele" style="width: 100px ; height: 170px"
+                                             onclick="window.location.assign('http://localhost:8080/supplier')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/supplier.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">SUPPLIER</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2  QUOTATTIONREQ">
+                                        <div class="card menuele" style="width: 100px ; height: 170px"
+                                             onclick="window.location.assign('http://localhost:8080/quatationrequest')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/quotationreq.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">QUOTATION REQ</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 QUOTATION">
+                                        <div class="card menuele" style="width: 100px ; height: 170px"
+                                             onclick="window.location.assign('http://localhost:8080/quatation')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/quotation.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">QUOTATION</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 PORDER">
+                                        <div class="card menuele" style="width: 100px ; height: 170px"
+                                             onclick="window.location.assign('http://localhost:8080/purchaseorder')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/purchaseorder.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">PORDER</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 SUPPLIERRETURN">
+                                        <div class="card menuele" style="width: 100px ; height: 170px"
+                                             onclick="window.location.assign('http://localhost:8080/supplierreturn')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/supplierreturn.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">SUP RETURN</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1 ml-1 mb-2 ">
+                                    <div class="col-md-2 GRN">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/grn')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/grn.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">GRN</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 SPAYMENT">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/supplierpayment')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/supplierpayment.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">SUP PAYMENT</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 INVOICE">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/invoice')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/invoice.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">INVOICE</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 CUSTOMER">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/customet')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/customer.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">CUSTOMER</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 CUSTOMERORDER">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/customerorder')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/customer.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">CUSTOMER ORDER</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 INVOICE">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/invoice')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/invoice.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">INVOICE</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1 ml-1 mb-2  ">
+                                    <div class="col-md-2 BATCH">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/batch')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/purchaseorder.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">BATCH</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 INVENTORY">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/inventory')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/inventory.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">INVENTORY</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 EMPLOYEE">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/employee')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/employee.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">EMPLOYEE</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 USER">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/user')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/employee.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">USER</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 PRIVILAGE">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/privilage')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/previllege.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">PREVILLAGE</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <!--<div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/supplierpayment')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/grn.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">GRN</h5>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+<!--Main table model-->
+
+<div class="modal fade" id="mainform" tabindex="-1" role="dialog" aria-labelledby="mainform" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-body" style="padding: 0">
+                <div class="row" id="supplierpaymentUI">
+                    <div class="col-md-12">
+                        <div class="card ">
+                            <div class="card-header" style="background-color:#F9AA33 ; color: #f8f8ff">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    </div>
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span class="star"
+                                              style="font-weight: bold ; float: right; font-size: medium">Required (*)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg" style="color: #000000">
+                                <div class="row" id="divFrom">
+                                    <div class="col-md-12">
+                                        <form class=""
+                                              id="employeeform"
+                                              style="height: inherit"
+                                              onsubmit="return false">
+
+                                            <!-- form modification starts here -->
+
+                                            <div class="row mb-2 mt-2">
+                                                <div class="col-md-12">
+                                                    <!------------------------------- -->
+                                                    <div class="row border-info shadow ml-2 mr-2 mb-1 "
+                                                         style="border-radius: 15px">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="" for="dteAddedDate"> <b>Added Date :
+                                                                    <span class="star">*</span></b></label>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-calendar"
+                                                                    aria-hidden="true"></i></span>
+                                                                    </div>
+                                                                    <input type="text"
+                                                                           class="form-control"
+                                                                           id="dteAddedDate"
+                                                                           data-toggle="tooltip"
+                                                                           title="Added Date Here.. (2021-10-30)"
+                                                                           data-placement="bottom"
+                                                                           disabled
+                                                                           placeholder="Date">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="" for="cmbAddedBy"> <b>Added By :
+                                                                    <span class="star">*</span></b></label>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-user"
+                                                                    aria-hidden="true"></i></span>
+                                                                    </div>
+                                                                    <select
+                                                                            class="form-control"
+                                                                            id="cmbAddedBy"
+                                                                            data-toggle="tooltip"
+                                                                            title="GRN Added By.."
+                                                                            data-placement="bottom"
+                                                                            disabled> </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="" for="cmbStatus"> <b>Supplier Payment Status
+                                                                    :
+                                                                    <span class="star">*</span></b></label>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-bars"
+                                                                    aria-hidden="true"></i></span>
+                                                                    </div>
+                                                                    <select
+                                                                            class="form-control"
+                                                                            id="cmbStatus"
+                                                                            data-toggle="tooltip"
+                                                                            title="GRN Status.."
+                                                                            disabled
+                                                                            data-placement="bottom"> </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!------------------------------- -->
+
+                                                    <div class="card mt-2 ml-3 mr-3">
+                                                        <div class="card-body">
+                                                            <!--Bill no , Supplier , GRN -->
+                                                            <div class="row">
+                                                                <div class="col-md-1">
+                                                                    <label class="" for="txtBillNo"> <b>Bill No :
+                                                                        <span class="star">*</span></b></label>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                        <input type="text"
+                                                                               class="form-control"
+                                                                               id="txtBillNo"
+                                                                               data-toggle="tooltip"
+                                                                               title="Bill No..(example of bill)"
+                                                                               data-placement="bottom"
+                                                                               placeholder="Enter Bill No"
+                                                                               onkeyup="textFieldBinder(txtBillNo , '' , 'spayment' , 'billno' , 'oldspayment')"
+                                                                               required
+                                                                        >
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- ------------- -->
+                                                                <div class="col-md-1">
+                                                                    <label class="" for="cmbSupplier"> <b>Supplier :
+                                                                        <span class="star">*</span></b></label>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-industry"
+                                                                    aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                        <Select
+                                                                                class="form-control"
+                                                                                id="cmbSupplier"
+                                                                                data-toggle="tooltip"
+                                                                                title="Supplier"
+                                                                                data-placement="bottom"
+                                                                                onchange="filterGrns() ; comboBoxBinder(cmbSupplier , '' , 'spayment' , 'supplier_id' , 'oldspayment') ; fliterAreas()"
+                                                                                required
+                                                                        ></Select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- ---------------- -->
+                                                                <div class="col-md-1">
+                                                                    <label class="" for="cmbGrn"> <b>GRN :
+                                                                    </b></label>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-code-fork"
+                                                                    aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                        <Select
+                                                                                class="form-control"
+                                                                                id="cmbGrn"
+                                                                                data-toggle="tooltip"
+                                                                                title="Select the GRN"
+                                                                                data-placement="bottom"
+                                                                                onchange=" comboBoxBinder(cmbGrn , '' , 'spayment' , 'grn_id' , 'oldspayment');filtergrn();calculateTotal();"
+                                                                        ></Select>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <!------------------------------- -->
+                                                            <!--Supplier areas , grn amount , Total amount -->
+                                                            <div class="row">
+                                                                <div class="col-md-1">
+                                                                    <label class="" for="txtAreasAmount"> <b>Areas Amount :
+                                                                        <span class="star">*</span></b></label>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835">Rs.</span>
+                                                                        </div>
+                                                                        <input type="text"
+                                                                               id="txtAreasAmount"
+                                                                               class="form-control"
+                                                                               data-toggle="tooltip"
+                                                                               title="GRN Type.."
+                                                                               data-placement="bottom">
+                                                                        <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <div data-toggle="popover"
+                                                                         data-content="Auto Generated Value"
+                                                                         data-trigger="focus"
+                                                                         tabindex="0">
+                                                                        <i class="fa fa-info-circle"></i>
+                                                                    </div>
+                                                                </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-1">
+                                                                    <label class="" for="txtGrnAmount"> <b>GRN Amount :</b></label>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835">Rs.</span>
+                                                                        </div>
+                                                                        <input type="text"
+                                                                               id="txtGrnAmount"
+                                                                               class="form-control"
+                                                                               data-toggle="tooltip"
+                                                                               title="GRN Type.."
+                                                                               data-placement="bottom"
+                                                                               onkeyup="textFieldBinder(txtGrnAmount ,'', 'spayment' , 'grnamount' , 'oldspayment')"
+                                                                        >
+                                                                        <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <div data-toggle="popover"
+                                                                         data-content="Auto Generated Value"
+                                                                         data-trigger="focus"
+                                                                         tabindex="0">
+                                                                        <i class="fa fa-info-circle"></i>
+                                                                    </div>
+                                                                </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-1">
+                                                                    <label class="" for="txtTotalAmount"> <b>Total Amount :
+                                                                        <span class="star">*</span></b></label>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835">Rs.</span>
+                                                                        </div>
+                                                                        <input type="text"
+                                                                               id="txtTotalAmount"
+                                                                               class="form-control"
+                                                                               data-toggle="tooltip"
+                                                                               title="GRN Type.."
+                                                                               data-placement="bottom"
+                                                                               onkeyup="textFieldBinder(txtTotalAmount ,'', 'spayment' , 'totalamount' , 'oldspayment')">
+                                                                        <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <div data-toggle="popover"
+                                                                         data-content="Auto Generated Value"
+                                                                         data-trigger="focus"
+                                                                         tabindex="0">
+                                                                        <i class="fa fa-info-circle"></i>
+                                                                    </div>
+                                                                </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!------------------------------- -->
+                                                            <!---paid amount , balanced amount-->
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="card mt-2 ml-3 p-2">
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <label class="" for="txtPaidAmount"> <b>Paid Amount :
+                                                                            <span class="star">*</span></b></label>
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835">Rs.</span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                   id="txtPaidAmount"
+                                                                                   class="form-control"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="Paid Amount"
+                                                                                   placeholder="Enter Paid Amount"
+                                                                                   data-placement="bottom"
+                                                                                   onkeyup="textFieldBinder(txtPaidAmount ,'^[0-9]{2,5}[.][0-9]{2}$', 'spayment' , 'paidamount' , 'oldspayment') ; calculateBalanc()"
+                                                                                   required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <label class="" for="cmbPaymentMethod"> <b>Payment Method :
+                                                                            <span class="star">*</span></b></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-bars"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <select class="form-control"
+                                                                                    id="cmbPaymentMethod"
+                                                                                    data-toggle="tooltip"
+                                                                                    title="Select Purchase Order.."
+                                                                                    data-placement="bottom"
+                                                                                    placeholder=""
+                                                                                    onchange="togleTextBox(),comboBoxBinder(cmbPaymentMethod ,'', 'spayment' , 'paymentmethod_id' , 'oldspayment')"
+                                                                            ></select></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="card mt-2 mr-3 p-2">
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label class="" for="txtBalancedAmount"> <b>Balanced Amount :
+                                                                                <span class="star">*</span></b></label>
+                                                                        </div>
+                                                                        <div class="col-md-8">
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835">Rs.</i></span>
+                                                                                </div>
+                                                                                <input type="text"
+                                                                                       id="txtBalancedAmount"
+                                                                                       class="form-control"
+                                                                                       data-toggle="tooltip"
+                                                                                       title="Select Supplier"
+                                                                                       data-placement="bottom">
+                                                                                <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <div data-toggle="popover"
+                                                                         data-content="Auto Generated Value"
+                                                                         data-trigger="focus"
+                                                                         tabindex="0">
+                                                                        <i class="fa fa-info-circle"></i>
+                                                                    </div>
+                                                                </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <small class="form-text text-muted">Credit Limit -:
+                                                                                <span id="txtCreditLimit"></span></small>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!------------------------------- -->
+                                                    <!------------------------------- -->
+                                                    <div class="row mb-2 ml-2 mr-2">
+                                                        <div class="col-md-2">
+
+                                                        </div>
+                                                        <div class="col-md-3">
+
+                                                        </div>
+
+                                                        <div class="col-md-7">
+                                                            <!-- check option -->
+                                                            <div class="collapse" id="check">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <label class="" for="txtCheck"> <b>Check No :
+                                                                            <span class="star">*</span></b></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                   id="txtCheck"
+                                                                                   class="form-control"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="GRN Type.."
+                                                                                   data-placement="bottom"
+                                                                                   onkeyup="textFieldBinder(txtCheck ,'', 'spayment' , 'checkno' , 'oldspayment')"
+                                                                                   required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <label class="" for="dteCheck"> <b>Check Date :
+                                                                        </b></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-calendar"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="date"
+                                                                                   id="dteCheck"
+                                                                                   class="form-control"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="GRN Type.."
+                                                                                   data-placement="bottom"
+                                                                                   onkeyup="textFieldBinder(dteCheck ,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$' , 'spayment' , 'checkdate' , 'oldspayment')"
+                                                                                   required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- check option end -->
+                                                            <!-- bank option -->
+                                                            <div class="collapse" id="bank">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <label class="" for="txtBankName"> <b>Bank Name :
+                                                                            <span class="star">*</span></b></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-university"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                   id="txtBankName"
+                                                                                   class="form-control"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="GRN Type.."
+                                                                                   data-placement="bottom"
+                                                                                   onkeyup=" textFieldBinder(txtBankName ,'', 'spayment' , 'bankname' , 'oldspayment')"
+                                                                            >
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <label class="" for="txtAccountNo"> <b>Account No :
+                                                                            <span class="star">*</span></b></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                   id="txtAccountNo"
+                                                                                   class="form-control"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="GRN Type.."
+                                                                                   data-placement="bottom"
+                                                                                   onkeyup="textFieldBinder(txtAccountNo ,'', 'spayment' , 'accountno' , 'oldspayment')"
+                                                                                   required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <label class="" for="txtBankHolder"> <b>Bank Holder
+                                                                            Name :
+                                                                            <span class="star">*</span></b></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-user"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                   id="txtBankHolder"
+                                                                                   class="form-control"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="GRN Type.."
+                                                                                   data-placement="bottom"
+                                                                                   onkeyup="textFieldBinder(txtBankHolder ,'', 'spayment' , 'holdername' , 'oldspayment')"
+                                                                                   required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <label class="" for="dteDepositTime"> <b>Deposit
+                                                                            Date Time :
+                                                                            <span class="star">*</span></b></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-calendar"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="datetime-local"
+                                                                                   id="dteDepositTime"
+                                                                                   class="form-control"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="GRN Type.."
+                                                                                   data-placement="bottom"
+                                                                                   onchange="textFieldBinder(dteDepositTime ,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$', 'spayment' , 'depositdatetime' , 'oldspayment')"
+                                                                            >
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- bank option end here -->
+                                                            <!-- bank transfer -->
+                                                            <div class="collapse" id="banktransfer">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <label class="" for="txtBankNameT"> <b>Bank Name :
+                                                                            <span class="star">*</span></b></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-university"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                   id="txtBankNameT"
+                                                                                   class="form-control"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="GRN Type.."
+                                                                                   data-placement="bottom"
+                                                                                   onkeyup=" textFieldBinder(txtBankNameT ,'', 'spayment' , 'bankname' , 'oldspayment')"
+                                                                            >
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <label class="" for="txtAccountNoT"> <b>Account No :
+                                                                            <span class="star">*</span></b></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                   id="txtAccountNoT"
+                                                                                   class="form-control"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="GRN Type.."
+                                                                                   data-placement="bottom"
+                                                                                   onkeyup="textFieldBinder(txtAccountNoT ,'', 'spayment' , 'accountno' , 'oldspayment')"
+                                                                                   required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <label class="" for="txtBankHolderT"> <b>Bank Holder
+                                                                            Name :
+                                                                            <span class="star">*</span></b></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-user"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                   id="txtBankHolderT"
+                                                                                   class="form-control"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="GRN Type.."
+                                                                                   data-placement="bottom"
+                                                                                   onkeyup="textFieldBinder(txtBankHolderT ,'', 'spayment' , 'holdername' , 'oldspayment')"
+                                                                                   required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <label class="" for="dteDepositTimeT"> <b>Deposit
+                                                                            Date Time :
+                                                                            <span class="star">*</span></b></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-calendar"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="datetime-local"
+                                                                                   id="dteDepositTimeT"
+                                                                                   class="form-control"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="GRN Type.."
+                                                                                   data-placement="bottom"
+                                                                                   onchange="textFieldBinder(dteDepositTimeT ,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$' , 'spayment' , 'depositdatetime' , 'oldspayment')"
+                                                                            >
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <label class="" for="txtTransferID"> <b>Transfer ID
+                                                                            :
+                                                                            <span class="star">*</span></b></label>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                   id="txtTransferID"
+                                                                                   class="form-control"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="GRN Type.."
+                                                                                   data-placement="bottom"
+                                                                                   onkeyup="textFieldBinder(txtTransferID ,'', 'spayment' , 'transferid' , 'oldspayment')"
+                                                                                   required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- bank transfer end here -->
+                                                        </div>
+                                                    </div>
+                                                    <!------------------------------- -->
+                                                    <!------------------------------- -->
+                                                    <div class="row mb-2 ml-2 mr-2">
+                                                        <div class="input-group">
+                                                            <div class="col-md-12">
+                                                                <label class="" for="txtDescription"> <b>Description:
+                                                                    <span class="star">*</span></b></label>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-indent"
+                                                                    aria-hidden="true"></i></span>
+                                                                    </div>
+                                                                    <textarea id="txtDescription"
+                                                                              class="form-control"
+                                                                              data-toggle="tooltip"
+                                                                              title="Enter Description"
+                                                                              placeholder="Enter Description"
+                                                                              onkeyup="(txtDescription ,'', 'spayment' , 'description' , 'oldpspayment')"
+                                                                              data-placement="bottom"> </textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mt-3 ml-2 mr-2">
+                                                <div class="col-md-12">
+                                                    <!-- Buttons starts here -->
+                                                    <div class="text-right">
+                                                        <button class="btn btn-info form-rounded" type="button" id="btnClear"
+                                                                style="width: 25%">
+                                                            <i class="fas fa-recycle mr-2"></i> Clear
+                                                        </button>
+                                                        <button class="btn btn-success form-rounded" style="width: 25%"
+                                                                type="submit"
+                                                                id="btnAdd">
+                                                            <i class='fas fa-plus-circle mr-2'></i>Add
+                                                        </button>
+                                                    </div>
+                                                    <!-- Buttons ends here -->
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--End of main table model-->
+
+<div class="overlay"></div>
+
+<!--Supplier Payment View Modal -->
+<div class="modal fade" id="supplierPaymentViewModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><span style="color:#0f6674 ; text-align: center ">Supplier Payment Details</span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body-lg" id="printformtable">
+                <!--Customer printable table-->
+                <table class="mt-5 table table-bordered table-striped">
+                    <tbody>
+                    <div class="row mt-2 ml-2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label style="font-weight: bold ; color: #0f6674 ; font-size: medium" for="tdBill">Bill No</label>
+                                <label style="font-weight: bold ; color: red ; font-size: xx-large" ;
+                                       id="tdBill"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div style="text-align: right">
+                                    <label>Report Print Date  </label>
+                                    <label id="tdPrinted"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 mr-3">
+                        <div class="col-md-6 ">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Supplier </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdSupplier"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Contact No </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdContact"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">GRN </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdGRN"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Areus Amount </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdAreusAmount"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">GRN Amount </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdGRNAmount">-</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Payment Method </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdPaymentMeth"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 ">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Total Amount </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdTotal"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Paid Amount </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdPaidAmount"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Balance Amount</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdBalanceAmount"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row ml-2 mr-2">
+                        <tr>
+                            <td style="font-weight: bold; text-align: center">Added By :</td>
+                            <td id="tdAddedBy" style="color: red ; font-weight: bold ;  text-align: center"></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold; text-align: center">Status :</td>
+                            <td id="tdStatus" style="color: red ; font-weight: bold ;  text-align: center"></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold; text-align: center">Added Date :</td>
+                            <td id="tdAdded" style="color: red ; font-weight: bold ;  text-align: center"></td>
+                        </tr>
+                    </div>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="btnPrintRowMC()">Print</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Settings Modal-->
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog"
+     aria-labelledby="settingsModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" id="modalContent">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle"><i
+                        class="fas fa-cog"></i> Settings</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form id="changePasswordForm" onsubmit="return false">
+                    <div class="form-row">
+                        <!-- Username -->
+                        <div class="form-group col-md-12">
+                            <label for="txtUsernameView" class="text-blue">
+                                <b>Username</b>
+                            </label>
+                            <div readonly class="form-control-plaintext"
+                                 id="txtUsernameView"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- Current Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtCurrentPassword"
+                                   class="text-blue"><b>Current Password</b> <i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtCurrentPassword"
+                                   onkeyup="textFieldBinder(txtCurrentPassword, '^[0-9]{5,}$', 'changePassword', 'currentPassword', 'oldChangePassword')">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- New Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtNewPassword" class="text-blue"><b>New
+                                Password</b><i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtNewPassword"
+                                   onkeyup="passwordFieldBinder(txtNewPassword, txtConfirmPassword, '^[0-9]{5,}$', 'changePassword', '', 'oldChangePassword')">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- Confirm Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtConfirmPassword"
+                                   class="text-blue"><b>Confirm
+                                Password</b><i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtConfirmPassword"
+                                   onkeyup="passwordFieldBinder(txtNewPassword, txtConfirmPassword, '^[0-9]{5,}$', 'changePassword', 'newPassword', 'oldChangePassword')">
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="brnClosechnagepasswordmodle" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary"
+                        onclick="btnSaveChangePasswordMC()">Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,153 @@
+.dashbordbody{
+	margin: 0px 0px 0px 0px;
+
+	/*background-color: aqua;
+	background:url(../image/homenew.jpg);*/
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: auto;
+	overflow-y:auto ;
+	padding: 10px 10px 10px 10px;
+
+}
+
+#calendar{
+	height: 500px;
+}
+ #employeecart {
+	 background-image: url(../image/cart/emp.png);
+	 background-size: cover;
+	 width: 100%;
+	 height: 100%;
+ }
+
+#patientcart {
+	background-image: url(../image/cart/patient.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#apoinmentcart {
+	background-image: url(../image/cart/apoinment.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#prescriptioncart {
+	background-image: url(../image/cart/prescription.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#invoicecart {
+	background-image: url(../image/cart/billing.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+
+#itemcart {
+	background-image: url(../image/cart/drug.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+#batchcart {
+	background-image: url(../image/cart/batch.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#suppliercart {
+	background-image: url(../image/cart/supplier.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#purchaseordercart {
+	background-image: url(../image/cart/po.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#grncart {
+	background-image: url(../image/cart/grn5.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#supplierpaymentcart {
+	background-image: url(../image/cart/supplierpayment.png);
+	background-size: cover;
+	margin-top: 0;
+	width: 100%;
+	height: 100%;
+}
+#iteminventrycart {
+	background-image: url(../image/cart/drug3.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#privilagecart {
+	background-image: url(../image/cart/privilege.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#usercart {
+	background-image: url(../image/cart/user.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+#doctoruicart {
+	background-image: url(../image/cart/doctor.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+#reportcart {
+	background-image: url(../image/cart/report_0.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
+
+#supportiveuicart {
+	background-image: url(../image/cart/sup2.png);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+body{
+	/**background:url(../image/home.jpg);*/
+	background-color: #F5F5F5;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: auto;
+	/**height: 900px; */
+}
+
+.navitem {
+	align-content: center;
+	width: auto;
+	height: 80px;
+	background-color: tomato;
+	border-radius: 10px;
+	margin: 5px;
+
+}

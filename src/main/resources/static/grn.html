@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel=" icon" type="image/png" href="resources/image/favicon.png">
+    <title>OMEL Lanka : GRN Management </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/fontawesome/css/all.css">
+
+
+    <style>
+
+        .bg {
+            background-image: url("resources/image/supermarketbackground/supplierbackground.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .select2-selection {
+            /*set with, height*/
+            width: 156.5px !important;
+            height: 38px !important;
+            padding-top: 4px;
+        }
+
+        .select2-selection__arrow {
+            margin-top: 6px !important;
+            margin-left: 10px !important;
+        }
+
+        .select2-selection__rendered {
+            padding-right: 5px !important;
+        }
+
+        .table-container {
+            width: auto;
+            overflow-x: scroll !important;
+        }
+
+        .tooltip-inner {
+            background-color: #f00;
+        }
+
+        .star {
+            font-size: 24px;
+            color: red;
+            font-weight: bold;
+        }
+
+        /*.card {
+            background-color: rgba(56, 125, 113, 1);
+        }*/
+
+        .btn-circle.btn-md {
+            width: 50px;
+            height: 50px;
+            padding: 7px 10px;
+            border-radius: 25px;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .btn-circle.btn-xl {
+            width: 50px;
+            height: 50px;
+
+            border-radius: 35px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+    </style>
+
+
+    <script defer src="resources/fontawesome/js/solid.js"></script>
+    <script defer src="resources/fontawesome/js/fontawesome.js"></script>
+
+
+    <script src="resources/jquery/jquery-3.4.1.min.js"></script>
+    <script src="resources/jquery/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="resources/jquery/popper.min.js"></script>
+    <script src="resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="resources/script/common.bitproject.js"></script>
+    <script src="resources/script/mainWindow.js"></script>
+    <script src="resources/script/innertablefunctions.js"></script>
+    <script src="grn.js"></script>
+
+
+    <link rel="stylesheet" href="resources/style/home.css">
+    <link rel="stylesheet" href="resources/style/common.css">
+    <link rel="stylesheet" href="resources/style/style4NEW.css">
+    <script src="resources/script/sweetalert.min.js"></script>
+
+    <!-- select 2 -->
+    <link rel="stylesheet" href="resources/select2/css/select2.min.css">
+    <script src="resources/select2/js/select2.min.js"></script>
+
+
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+
+        <div id="dismiss">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+
+        <div class="sidebar-header text-center" >
+            <h3>OMEL Supermartket</h3>
+            <strong>WELCOME</strong>
+        </div>
+
+        <div class="sidebar-header list-unstyled text-center">
+            <a href="#"><img id="profileImage" class="profileImage"></a><br>
+            <br>
+            <label><span id="lblLogUser"> </span></label>
+            <br>
+            <label>Loged as : <span id="spnDesignation"> </span></label>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li class="">
+                <a href="http://localhost:8080/mainwindow">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="#adminSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-briefcase"></i>
+                    Administration
+                </a>
+                <ul class="collapse list-unstyled" id="adminSubMenu">
+                    <li class="EMPLOYEE">
+                        <a href="http://localhost:8080/employee">EMPLOYEE</a>
+                    </li>
+                    <li class="PRIVILAGE">
+                        <a href="http://localhost:8080/privilage">PREVILLAGE</a>
+                    </li>
+                    <li class="USER">
+                        <a href="http://localhost:8080/user">USER</a>
+                    </li>
+                </ul>
+
+                <a href="#purchaseSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fa fa-credit-card"></i>
+                    Purchase
+                </a>
+                <ul class="collapse list-unstyled" id="purchaseSubmenu">
+                    <li class="SUPPLIER">
+                        <a href="http://localhost:8080/supplier">SUPPLIER</a>
+                    </li>
+                    <li class="QUOTATTIONREQ">
+                        <a href="http://localhost:8080/quatationrequest">QUOTATION REQ</a>
+                    </li>
+                    <li class="QUOTATION">
+                        <a href="http://localhost:8080/quatation">QUITATION</a>
+                    </li>
+                    <li class="SUPPLIERRETURN">
+                        <a href="http://localhost:8080/supplierreturn">SUPPLIER RETURN</a>
+                    </li>
+                    <li class="PORDER">
+                        <a href="http://localhost:8080/purchaseorder">PURCHASE ORDER</a>
+                    </li>
+                    <li class="active GRN ">
+                        <a href="http://localhost:8080/grn">GRN</a>
+                    </li>
+                    <li class="SPAYMENT">
+                        <a href="http://localhost:8080/supplierpayment">SUP PAYMENT</a>
+                    </li>
+                </ul>
+
+                <a href="#itemSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fa fa-cart-plus"></i>
+                    ITEM
+                </a>
+                <ul class="collapse list-unstyled" id="itemSubMenu">
+                    <li class="ITEM">
+                        <a href="http://localhost:8080/item">ITEM</a>
+                    </li>
+                    <li class="BATCH">
+                        <a href="http://localhost:8080/batch">BATCH</a>
+                    </li>
+                    <li class="INVENTORY">
+                        <a href="http://localhost:8080/inventory">INVENTORY</a>
+                    </li>
+                </ul>
+
+                <!--CUSTOMER-->
+                <a href="#customerSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fa fa-user"></i>
+                    Customer
+                </a>
+                <ul class="collapse list-unstyled" id="customerSubMenu">
+                    <li class="CUSTOMER">
+                        <a href="http://localhost:8080/customer">CUSTOMER REG</a>
+                    </li>
+                    <li class="CUSTOMERORDER">
+                        <a href="http://localhost:8080/customerorder">CUSTOMER ORDER</a>
+                    </li>
+                    <li class="INVOICE">
+                        <a href="http://localhost:8080/invoice">INVOICE</a>
+                    </li>
+                </ul>
+
+
+            </li>
+
+            <li class="dropdown-divider"></li>
+            <!--reports-->
+            <li>
+                <a href="#reportssubmenu" id="reports" data-toggle="collapse" aria-expanded="false"
+                   class="dropdown-toggle">
+                    <i class="fa fa-chart-line" ></i>
+                    Reports
+                </a>
+                <ul class="collapse list-unstyled" id="reportssubmenu">
+                    <li class="REPORT">
+                        <a href="http://localhost:8080/incomereport">Income Report</a>
+                    </li>
+                    <li class="REPORT">
+                        <a href="http://localhost:8080/expencereport">Expense Report</a>
+                    </li>
+                    <li class="REPORT">
+                        <a href="http://localhost:8080/areusamountreport">Areus Amount Report</a>
+                    </li>
+                    <li class="REPORT">
+                        <a href="http://localhost:8080/itemsalereport">Areus Amount Report</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <!--setting veiw profile , sign out-->
+            <li class="dropdown-divider"></li>
+
+            <li>
+                <a href="#settingssubmenu" id="settings" data-toggle="collapse" aria-expanded="false"
+                   class="dropdown-toggle">
+                    <i class="fa fa-cog"></i>
+                    Settings
+                </a>
+                <ul class="collapse list-unstyled" id="settingssubmenu">
+                    <!--<li class="VIEWPROFILE">
+                        <a href="#">View Profile</a>
+                    </li>-->
+                    <li class="CHANGEPASS">
+                        <a href="#"
+                           data-toggle="modal"
+                           data-target="#settingsModal">Change Password</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="dropdown-divider"></li>
+
+            <li>
+                <a href="#" id="signout" data-toggle="collapse" aria-expanded="false" onclick="btnSignoutMC()">
+                    <i class="fa fa-sign-out-alt"></i>
+                    Sign Out
+                </a>
+            </li>
+
+            <li class="dropdown-divider"></li>
+        </ul>
+
+        <!--<ul class="list-unstyled CTAs text-center">
+            <li>
+                <div class="text-center">
+                    <a href="#"><img id="profileImage" class="profileImage "></a><br>
+                </div>
+                <div tyle="margin-top: 5px">
+                    <div id="lblLogUser"></div> <p class="font-weight-bold text-white"> Loged as : <span id="spnDesignation"> </span></p>
+                </div>
+            </li>
+        </ul>-->
+
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between ">
+            <div class="container-fluid">
+                <div class="float-left">
+                    <button type="button" id="sidebarCollapse" class="btn btn-warning btn-lg btn-block">
+                        <i class="fa fa-sitemap" aria-hidden="true"></i>
+                        <span></span>
+                    </button>
+                </div>
+                <div class="">
+                    <h2 class="text-white font-weight-bold"> GRN Management </h2>
+                </div>
+            </div>
+
+        </nav>
+        <!-- Content -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="border-radius:30px">
+                        <div class="card-body">
+                            <div class="row shadow-sm mb-2 mr-2 ml-2"
+                                 style="background-color: #37474F;color: #E0E0E0 ; height: 60px ">
+                                <div class="col-md-6 mt-2">
+                                    <button class="btn btn-warning " data-toggle="modal"
+                                            data-target="#maintable" style="width: 25%" type="submit">
+                                        <i class='fa fa-plus-square mr-2'></i><span
+                                            style="font-weight: bold">Add New</span>
+                                    </button>
+                                    <input type="button" class="btn font-weight-bold  btn-info "
+                                           value="Print Table" style="width: 25%"
+                                           id="btnPrintTable" onclick="btnPrintTableMC()"/>
+                                </div>
+                                <div class="col-md-6 mt-2">
+                                    <input placeholder="Search" class="form-control float-right "
+                                           type="text" id="txtSearchName"/>
+                                </div>
+                            </div>
+                            <div class="row formcontent" id="divTable">
+                                <div class="col-md-12">
+                                    <!-- table body -->
+                                    <div class="" id="tableParent" class=" ml-2">
+                                        <script>
+
+                                            var metadata = [
+                                                {
+                                                    name: 'GRN Code',
+                                                    search: true,
+                                                    datatype: 'text',
+                                                    property: 'grncode'
+                                                },
+                                                {
+                                                    name: 'GRN Type',
+                                                    search: true,
+                                                    datatype: 'text',
+                                                    property: 'grntype_id.name'
+                                                },
+                                                {
+                                                    name: 'Supplier',
+                                                    search: true,
+                                                    datatype: 'text',
+                                                    property: 'supplier_id.companyfullname'
+                                                },
+                                                {
+                                                    name: 'Purchase Order',
+                                                    search: true,
+                                                    datatype: 'text',
+                                                    property: 'porder_id.pordercode'
+                                                },
+                                                {
+                                                    name: 'Supplier Return',
+                                                    search: true,
+                                                    datatype: 'text',
+                                                    property: 'supplierreturn_id.supreturncode'
+                                                },
+                                                {
+                                                    name: 'Received Date',
+                                                    search: true,
+                                                    datatype: 'text',
+                                                    property: 'receiveddate'
+                                                },
+                                                {
+                                                    name: 'Added Date',
+                                                    search: true,
+                                                    datatype: 'text',
+                                                    property: 'addeddate'
+                                                },
+                                                {
+                                                    name: 'Satus',
+                                                    search: true,
+                                                    datatype: 'text',
+                                                    property: 'grnstatus_id.name'
+                                                },
+
+                                            ];
+                                            table("tableParent", "tblGRN", metadata, true);
+
+                                        </script>
+
+                                        <div>
+                                            <div style="display: inline-block ; float: left">
+                                                <select class="form-control input" id="cmbPageSize"
+                                                        style="width: 80px;">
+                                                    <option selected value="10">10</option>
+                                                    <option value="15">15</option>
+                                                    <option value="30">30</option>
+                                                    <option value="500">500</option>
+                                                    <option value="1000">1000</option>
+                                                </select>
+                                                <script>
+                                                    cmbPageSize.onchange = function chnagePageSize() {
+                                                        activepage = 1;
+                                                        btnSearchMC();
+                                                    };
+                                                </script>
+                                            </div>
+                                            <div style="display: inline-block; margin-left: 10px;">
+                                                <ul id="pagination" class="pagination"></ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div id="err">
+                                <h3>Error Log</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--home button-->
+            <a class="floatHome" href="http://localhost:8080/mainwindow">
+                <i class="fa fa-home my-float float-icon" aria-hidden="true"></i>
+            </a>
+
+            <!--menu button-->
+            <a class="float" data-toggle="modal" data-target="#menuModal">
+                <i class="fa fa-th-large my-float float-icon" aria-hidden="true"></i>
+            </a>
+            <!--Menu Modal-->
+            <div class="modal fade" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color:#F9AA33 ; color: #f8f8ff">
+                            <h5 class="modal-title">MENU ITEMS</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class=modal-body" style="padding: 0px">
+                            <div class="p-4">
+                                <div class="row mt-1 ml-1 mb-2 ITEM">
+                                    <div class="col-md-2 ">
+                                        <div class="card menuele" style="width: 100px ; height: 170px"
+                                             onclick="window.location.assign('http://localhost:8080/item')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/item.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">ITEM</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 SUPPLIER">
+                                        <div class="card menuele" style="width: 100px ; height: 170px"
+                                             onclick="window.location.assign('http://localhost:8080/supplier')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/supplier.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">SUPPLIER</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2  QUOTATTIONREQ">
+                                        <div class="card menuele" style="width: 100px ; height: 170px"
+                                             onclick="window.location.assign('http://localhost:8080/quatationrequest')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/quotationreq.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">QUOTATION REQ</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 QUOTATION">
+                                        <div class="card menuele" style="width: 100px ; height: 170px"
+                                             onclick="window.location.assign('http://localhost:8080/quatation')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/quotation.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">QUOTATION</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 PORDER">
+                                        <div class="card menuele" style="width: 100px ; height: 170px"
+                                             onclick="window.location.assign('http://localhost:8080/purchaseorder')">
+                                            <img class="card-img-top"
+                                                 src="resources/image/cart/image2/purchaseorder.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">PORDER</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 SUPPLIERRETURN">
+                                        <div class="card menuele" style="width: 100px ; height: 170px"
+                                             onclick="window.location.assign('http://localhost:8080/supplierreturn')">
+                                            <img class="card-img-top"
+                                                 src="resources/image/cart/image2/supplierreturn.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">SUP RETURN</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1 ml-1 mb-2 ">
+                                    <div class="col-md-2 GRN">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/grn')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/grn.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">GRN</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 SPAYMENT">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/supplierpayment')">
+                                            <img class="card-img-top"
+                                                 src="resources/image/cart/image2/supplierpayment.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">SUP PAYMENT</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 INVOICE">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/invoice')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/invoice.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">INVOICE</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 CUSTOMER">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/customet')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/customer.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">CUSTOMER</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 CUSTOMERORDER">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/customerorder')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/customer.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">CUSTOMER ORDER</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 INVOICE">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/invoice')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/invoice.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">INVOICE</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1 ml-1 mb-2  ">
+                                    <div class="col-md-2 BATCH">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/batch')">
+                                            <img class="card-img-top"
+                                                 src="resources/image/cart/image2/purchaseorder.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">BATCH</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 INVENTORY">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/inventory')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/inventory.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">INVENTORY</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 EMPLOYEE">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/employee')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/employee.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">EMPLOYEE</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 USER">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/user')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/employee.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">USER</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 PRIVILAGE">
+                                        <div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/privilage')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/previllege.jpg"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">PREVILLAGE</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <!--<div class="card menuele" style="width: 100px ; height: 140px"
+                                             onclick="window.location.assign('http://localhost:8080/supplierpayment')">
+                                            <img class="card-img-top" src="resources/image/cart/image2/grn.png"
+                                                 style="width: content-box " alt="Card image cap">
+                                            <h5 class="card-title text-center">GRN</h5>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="overlay"></div>
+    </div>
+</div>
+
+
+<!--Main form model-->
+
+<div class="modal fade" id="maintable" tabindex="-1" role="dialog" aria-labelledby="maintable" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-body" style="padding: 0">
+                <!-- purchase order table starts here-->
+                <div class="row" id="grnUI">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" style="background-color:#F9AA33 ; color: #f8f8ff">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    </div>
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span class="star"
+                                              style="font-weight: bold ; float: right; font-size: medium">Required (*)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg" style="color: #000000">
+                                <div class="row" id="divFrom">
+                                    <div class="col-md-12">
+                                        <form class=""
+                                              id="employeeform"
+                                              style="height: inherit "
+                                              onsubmit="return false">
+                                            <!-- style="background: linear-gradient(to right, #1d4350, #a43931); border-radius: 30px ; color: #E0E0E0 ; height: inherit"-->
+
+                                            <!-- form modification starts here -->
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="card m-3">
+                                                        <div class="card-body shadow-lg">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="" for="dteAddedDate"> <b>Added
+                                                                            Date :
+                                                                            <span class="star">*</span></b></label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                   class="form-control"
+                                                                                   id="dteAddedDate"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="Added Date Here.. (2021-10-30)"
+                                                                                   data-placement="bottom"
+                                                                                   disabled
+                                                                                   placeholder="Date">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="" for="cmbAddedBy"> <b>Added By :
+                                                                            <span class="star">*</span></b></label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <select
+                                                                                    class="form-control"
+                                                                                    id="cmbAddedBy"
+                                                                                    data-toggle="tooltip"
+                                                                                    title="GRN Added By.."
+                                                                                    data-placement="bottom"
+                                                                                    disabled> </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="" for="cmbStatus"> <b>GRN Status :
+                                                                            <span class="star">*</span></b></label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <select
+                                                                                    class="form-control"
+                                                                                    id="cmbStatus"
+                                                                                    data-toggle="tooltip"
+                                                                                    title="GRN Status.."
+                                                                                    disabled
+                                                                                    data-placement="bottom"> </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="card ml-3">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="" for="grnCode"> <b>GRN Code :
+                                                                        <span class="star">*</span></b></label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                        <input type="text"
+                                                                               class="form-control"
+                                                                               id="grnCode"
+                                                                               data-toggle="tooltip"
+                                                                               title="GRN Code No Here..(sup0001)"
+                                                                               data-placement="bottom"
+                                                                               placeholder="xxx"
+                                                                               required
+                                                                        >
+                                                                        <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <div data-toggle="popover"
+                                                                         data-content="Auto Generated Value"
+                                                                         data-trigger="focus"
+                                                                         tabindex="0">
+                                                                 <i class="fa fa-info-circle"></i>
+                                                               </div>
+                                                             </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="" for="cmbSupplier"> <b>Supplier :
+                                                                        <span class="star">*</span></b></label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                        <select id="cmbSupplier"
+                                                                                class="form-control"
+                                                                                data-toggle="tooltip"
+                                                                                title="Select Supplier"
+                                                                                data-placement="bottom"
+                                                                                onchange="cmbSupplierFilters() , comboBoxBinder(cmbSupplier ,'', 'grn' , 'supplier_id' , 'oldgrn')"
+                                                                                required> </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="" for="cmbSupReturn"> <b>Supplier
+                                                                        Return:
+                                                                        <span class="star">*</span></b></label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                        <select id="cmbSupReturn"
+                                                                                class="form-control"
+                                                                                data-toggle="tooltip"
+                                                                                title="Select Supplier Return"
+                                                                                onchange="fillSupReturntxt() , comboBoxBinder(cmbSupReturn ,'', 'grn' , 'supplierreturn_id' , 'oldgrn')"
+                                                                                data-placement="bottom"> </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="card mr-3">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="" for="cmbgrnType"> <b>GRN Type :
+                                                                        <span class="star">*</span></b></label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                        <select id="cmbgrnType"
+                                                                                class="form-control"
+                                                                                data-toggle="tooltip"
+                                                                                title="GRN Type.."
+                                                                                data-placement="bottom"
+                                                                                onchange="grnTypeCH() , comboBoxBinder(cmbgrnType ,'', 'grn' , 'grntype_id' , 'oldgrn')"
+                                                                                required> </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="" for="cmbPorder"> <b>Purchase Order :
+                                                                        <span class="star">*</span></b></label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                        <select class="form-control"
+                                                                                id="cmbPorder"
+                                                                                data-toggle="tooltip"
+                                                                                title="Select Purchase Order.."
+                                                                                data-placement="bottom"
+                                                                                placeholder=""
+                                                                                onchange="porderCH(),  comboBoxBinder(cmbPorder ,'', 'grn' , 'porder_id' , 'oldgrn')"
+                                                                        ></select></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="" for="dteReceived"> <b>Received Date
+                                                                        :
+                                                                        <span class="star">*</span></b></label>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                        <input type="date"
+                                                                               class="form-control"
+                                                                               id="dteReceived"
+                                                                               data-toggle="tooltip"
+                                                                               title="Select Received Date.."
+                                                                               data-placement="bottom"
+                                                                               placeholder=""
+                                                                               onchange="textFieldBinder(dteReceived ,'^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$', 'grn' , 'receiveddate' , 'oldgrn')"
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-2 mt-2">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <button type='button'
+                                                                data-toggle="collapse"
+                                                                data-target="#itemdetails"
+                                                                class='btn  btn-lg  text-left ml-4'
+                                                                style="background-color: #F9AA33 ; font-weight: bold">
+                                                            Add Items
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-2 collapse" id="itemdetails">
+                                                <div class="col-md-12">
+                                                    <div class="card  ml-4 mr-4 mb-2"
+                                                         style=" color: #171a1d">
+                                                        <div class="card-body">
+                                                            <!------------------------------- -->
+                                                            <div class="row mt-2 ml-2 mr-2">
+                                                                <div class="col-md-3">
+                                                                    <label class="" for="cmbItem"> <b>Item :
+                                                                        <span class="star">*</span></b></label>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="input-group" id="selectCmbItemsParent">
+                                                                        <div class="input-group-prepend">
+                                                                 <span class="input-group-text"
+                                                                       style="background-color: #FDD835"><i
+                                                                         class="fa fa-address-card"
+                                                                         aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                        <select id="cmbItem"
+                                                                                class="form-control js-example-basic-single js-states"
+                                                                                data-toggle="tooltip"
+                                                                                title="Select Item"
+                                                                                data-placement="bottom"
+                                                                                onchange="itemCH() , comboBoxSelect2Binder(cmbItem , '' , 'batch', 'item_id' , 'oldbatch' , 'selectCmbItemsParent .select2-container')"> </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label class="" for="txtBatch"> <b>Batch Code:
+                                                                        <span class="star">*</span></b></label>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                        <input type="text"
+                                                                               id="txtBatch"
+                                                                               class="form-control"
+                                                                               data-toggle="tooltip"
+                                                                               placeholder="Type new or existing batch code"
+                                                                               title="Enter Batch"
+                                                                               data-placement="bottom"
+                                                                               onkeyup="textFieldBinder(txtBatch , '^.*$', 'batch' , 'batchnumber' , 'oldbatch')"
+                                                                        > </input>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!------------------------------- -->
+                                                            <!------------------------------- -->
+                                                            <div class="row mt-1 ml-2 mr-2">
+                                                                <div class="col-md-3">
+                                                                    <label class="" for="txtPurchase"> <b>Purchase Price
+                                                                        :
+                                                                        <span class="star">*</span></b></label>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835">Rs.</span>
+                                                                        </div>
+                                                                        <input type="text"
+                                                                               class="form-control"
+                                                                               id="txtPurchase"
+                                                                               data-toggle="tooltip"
+                                                                               title="Enter Purchase Price"
+                                                                               data-placement="bottom"
+                                                                               placeholder=""
+                                                                               onkeyup="textFieldBinder(txtPurchase , '^[0-9]{2,5}[.][0-9]{2}$' , 'batch' , 'purchaseprice' , 'oldbatch')"
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label class="" for="txtSalesPrice"> <b>Sales Price
+                                                                        :
+                                                                        <span class="star">*</span></b></label>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835">Rs.</span>
+                                                                        </div>
+                                                                        <input type="text"
+                                                                               class="form-control"
+                                                                               id="txtSalesPrice"
+                                                                               data-toggle="tooltip"
+                                                                               title="Enter Sales Price"
+                                                                               data-placement="bottom"
+                                                                               placeholder=""
+                                                                               onkeyup="textFieldBinder( txtSalesPrice, '^[0-9]{2,5}[.][0-9]{2}$' , 'batch' ,'saleprice' , 'oldbatch')"
+                                                                        >
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!------------------------------- -->
+                                                            <!------------------------------- -->
+                                                            <div class="row ml-2 mr-2">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="" for="txtQuantity"> <b>Quantity :
+                                                                            <span class="star">*</span></b></label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                   class="form-control"
+                                                                                   id="txtQuantity"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="Enter Quantity"
+                                                                                   data-placement="bottom"
+                                                                                   placeholder=""
+                                                                                   onchange="checkzero() , textFieldBinder(txtQuantity , '^[0-9]*$' , 'grnHasBatch' , 'qty' , 'oldgrnHasBatch') ;lineTot(); totQuantity();"
+                                                                            >
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="" for="txtFreeQuantity"> <b>Free
+                                                                            Qty :
+                                                                            <span class="star">*</span></b></label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                   min="0"
+                                                                                   class="form-control"
+                                                                                   id="txtFreeQuantity"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="Enter Free Quantity"
+                                                                                   data-placement="bottom"
+                                                                                   placeholder=""
+                                                                                   onkeyup="totQuantity(),textFieldBinder(txtFreeQuantity ,'^[0-9]*$', 'grnHasBatch' , 'freeqty' , 'oldgrnHasBatch')"
+                                                                            >
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="" for="txtTotalQty"> <b>Total Qty
+                                                                            :
+                                                                            <span class="star">*</span></b></label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                   class="form-control"
+                                                                                   id="txtTotalQty"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="Enter Total Quantity"
+                                                                                   data-placement="bottom"
+                                                                                   disabled
+                                                                                   onkeyup="textFieldBinder(txtTotalQty , '^[0-9]*$' , 'grnHasBatch' , 'totalqty' , 'oldgrnHasBatch')"
+                                                                            >
+                                                                            <div class="input-group-append">
+                                                                                <span class="input-group-text">
+                                                                                   <div data-toggle="popover"
+                                                                                        data-content="Auto Generated Value"
+                                                                                        data-trigger="focus"
+                                                                                        tabindex="0">
+                                                                                       <i class="fa fa-info-circle"></i>
+                                                                                   </div>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <!------------------------------- -->
+                                                            <!------------------------------- -->
+                                                            <div class="row ml-2 mr-2">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <div class="input-group">
+                                                                            <label class="" for="txtLineTotal"> <b>Discount
+                                                                                Ratio :
+                                                                                <span class="star">*</span></b></label>
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-percent" aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                   class="form-control"
+                                                                                   id="txtDiscount"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="Line Total"
+                                                                                   data-placement="bottom"
+                                                                                   placeholder=""
+                                                                                   onkeyup=" textFieldBinder(txtDiscount , '^[0-9]{2,5}$' , 'batch' , 'discountratio' , 'oldbatch')"
+                                                                            >
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <div class="input-group">
+                                                                            <label class="" for="txtLineTotal"> <b>Line
+                                                                                Total :
+                                                                                <span class="star">*</span></b></label>
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835">Rs.</span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                   class="form-control"
+                                                                                   id="txtLineTotal"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="Line Total"
+                                                                                   data-placement="bottom"
+                                                                                   placeholder=""
+                                                                                   onkeyup=" textFieldBinder(txtLineTotal , '^[0-9]{2,5}$' , 'grnHasBatch' , 'linetotal' , 'oldgrnHasBatch')"
+                                                                            >
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!------------------------------- -->
+                                                            <!------------------------------- -->
+                                                            <div class="row ml-2 mr-2">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label class="" for="dteManDate"> <b>Manufacture
+                                                                            Date :
+                                                                            <span class="star">*</span></b></label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="date"
+                                                                                   class="form-control"
+                                                                                   id="dteManDate"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="Select Manufacture Date"
+                                                                                   data-placement="bottom"
+                                                                                   onchange="textFieldBinder(dteManDate , '^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$' , 'batch' , 'manufacdate' , 'oldbatch')"
+                                                                            >
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label class="" for="dteExpDate"> <b>Expire Date
+                                                                            :
+                                                                            <span class="star">*</span></b></label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <input type="date"
+                                                                                   class="form-control"
+                                                                                   id="dteExpDate"
+                                                                                   data-toggle="tooltip"
+                                                                                   title="Select Expire Date"
+                                                                                   data-placement="bottom"
+                                                                                   onchange="textFieldBinder(dteExpDate , '^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$' , 'batch' , 'expiredate' , 'oldbatch')"
+                                                                            >
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!------------------------------- -->
+                                                            <!------------------------------- -->
+                                                            <div class="row ml-2 mr-2">
+                                                                <div class="col-md-12">
+                                                                    <div class="text-right">
+                                                                        <button class="btn btn-info " type="button"
+                                                                                id="btnInnerClear">
+                                                                            <i class="fas fa-recycle mr-2"></i> Clear
+                                                                        </button>
+                                                                        <button class="btn btn-success" type="button"
+                                                                                onclick="btnInnerAddMC()"
+                                                                                id="btnInnerAdd">
+                                                                            <i class='fas fa-plus-circle mr-2'></i>Add
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!------------------------------- -->
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card ml-4 mr-4"
+                                                         style="background-color: #4A6572">
+                                                        <div class="card-body">
+                                                            <div class="row mb-2 ml-2 mr-2" id="innerTable">
+                                                                <script>
+                                                                    var metadatainner = [
+                                                                        //{column name / search(true/false) / datatype(text/photo/amount) / mappingproperty}
+                                                                        {
+                                                                            name: 'Item Name',
+                                                                            search: true,
+                                                                            datatype: 'text',
+                                                                            property: 'batch_id.item_id.itemname'
+                                                                        },
+                                                                        {
+                                                                            name: 'Batch ',
+                                                                            search: true,
+                                                                            datatype: 'text',
+                                                                            property: 'batch_id.batchnumber'
+                                                                        },
+                                                                        {
+                                                                            name: 'Sales Price ',
+                                                                            search: true,
+                                                                            datatype: 'amount',
+                                                                            property: 'batch_id.saleprice'
+                                                                        },
+                                                                        {
+                                                                            name: 'Line Total ',
+                                                                            search: true,
+                                                                            datatype: 'amount',
+                                                                            property: 'linetotal'
+                                                                        },
+                                                                    ];
+                                                                    tableForInnerForm("innerTable", "tblInnerItem", metadatainner, true);
+                                                                </script>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row mt-4 ml-2 mr-2">
+                                                <div class="col-md-6">
+                                                    <div class="row mb-2 ml-2 mr-2 mt-2">
+                                                        <div class="col-md-5">
+                                                            <label class="" for="txtTotalAmount"> <b>Item Total Amount :
+                                                                </b></label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835">Rs.</span>
+                                                                </div>
+                                                                <input type="text"
+                                                                       class="form-control"
+                                                                       id="txtTotalAmount"
+                                                                       data-toggle="tooltip"
+                                                                       title="Select Received Date.."
+                                                                       data-placement="bottom"
+                                                                       placeholder=""
+                                                                       onkeyup="textFieldBinder( txtTotalAmount, '^[0-9]{2,5}[.][0-9]{2}$' , 'grn' , 'totalamount' , 'oldgrn')"
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-2 ml-2 mr-2 ">
+                                                        <div class="col-md-5">
+                                                            <label class="" for="txtNetAmount"> <b>Net Amount :
+                                                                <span class="star">*</span></b></label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835">Rs.</span>
+                                                                </div>
+                                                                <input type="text"
+                                                                       class="form-control"
+                                                                       id="txtNetAmount"
+                                                                       data-toggle="tooltip"
+                                                                       title="Net Amount Here"
+                                                                       data-placement="bottom"
+                                                                       placeholder=""
+                                                                       onkeyup="textFieldBinder( txtNetAmount, '^[0-9]{2,5}[.][0-9]{2}$' , 'grn' , 'netamount' , 'oldgrn')"
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-2 ml-2 mr-2">
+                                                        <div class="col-md-5">
+                                                            <label class="" for="txtGrossAmount"> <b>Gross Amount :
+                                                                <span class="star">*</span></b></label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835">Rs.</span>
+                                                                </div>
+                                                                <input type="text"
+                                                                       class="form-control"
+                                                                       id="txtGrossAmount"
+                                                                       data-toggle="tooltip"
+                                                                       title="Gross Amount Here"
+                                                                       data-placement="bottom"
+                                                                       placeholder=""
+                                                                       onkeyup="textFieldBinder(txtGrossAmount , '^[0-9]{2,5}[.][0-9]{2}$' , 'grn' , 'grossamount' , 'oldgrn')"
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-2 ml-2 mr-2">
+                                                        <div class="col-md-5">
+                                                            <label class="" for="txtDescription"> <b>Description
+                                                                :</b></label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-address-card"
+                                                                    aria-hidden="true"></i></span>
+                                                                </div>
+                                                                <textarea
+                                                                        class="form-control"
+                                                                        id="txtDescription"
+                                                                        data-toggle="tooltip"
+                                                                        title="Enter Description"
+                                                                        data-placement="bottom"
+                                                                        placeholder=""
+                                                                        onkeyup="textFieldBinder(txtDescription , '^[A-Za-z0-9]+$' , 'grn' , 'description' , 'oldgrn')"
+                                                                ></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!----------------------------------->
+                                                <!----------------------------------->
+                                                <div class="col-md-6">
+                                                    <div class="row mb-2 ml-2 mr-2 mt-2">
+                                                        <div class="col-md-5">
+                                                            <label class="" for="txtReturnAmount"> <b>Return Amount :
+                                                                </b></label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835">Rs.</span>
+                                                                </div>
+                                                                <input type="text"
+                                                                       class="form-control"
+                                                                       id="txtReturnAmount"
+                                                                       data-toggle="tooltip"
+                                                                       title="Enter Return Amount"
+                                                                       data-placement="bottom"
+                                                                       placeholder=""
+                                                                       onkeyup="textFieldBinder(txtReturnAmount , '^[0-9]{2,5}[.][0-9]{2}$' , 'grn' , 'returnamount' , 'oldgrn')"
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-2 ml-2 mr-2">
+                                                        <div class="col-md-5">
+                                                            <label class="" for="txtDiscountRatio"> <b>Discount Ratio :
+                                                                <span class="star">*</span></b></label>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                  style="background-color: #FDD835"><i
+                                                                    class="fa fa-percent" aria-hidden="true"></i></span>
+                                                                </div>
+                                                                <input type="text"
+                                                                       class="form-control"
+                                                                       id="txtDiscountRatio"
+                                                                       data-toggle="tooltip"
+                                                                       title="Enter Discount Ratio"
+                                                                       data-placement="bottom"
+                                                                       placeholder=""
+                                                                       onkeyup=" textFieldBinder(txtDiscountRatio , '^[0-9]{1,2}$' , 'grn' , 'discountedratio' , 'oldgrn') ; calculategross() ; calculateNetAmount()"
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mt-3 ml-2 mr-2">
+                                                <div class="col-md-12">
+                                                    <!-- Buttons starts here -->
+                                                    <div class="text-right">
+                                                        <button class="btn btn-info " type="button" id="btnClear"
+                                                                style="width: 25% ; border-radius: 20px">
+                                                            <i class="fas fa-recycle mr-2"></i> Clear
+                                                        </button>
+                                                        <button class="btn btn-success"
+                                                                style="width: 25% ; border-radius: 20px"
+                                                                type="submit"
+                                                                id="btnAdd">
+                                                            <i class='fas fa-plus-circle mr-2'></i>Add GRN
+                                                        </button>
+                                                    </div>
+                                                    <!-- Buttons ends here -->
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div><!-- card body ends here -->
+                        </div>
+                    </div>
+                </div>
+                <!-- purchase order table ends here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--End of main form model-->
+
+<!--Quatation request Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Quatation Request</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Send Quataion Request</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Customer Modal -->
+<div class="modal fade" id="grnDataViewModal" tabindex="-1" role="dialog" aria-labelledby="grnDataViewModal"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><span style="color:#0f6674 ; text-align: center ">GRN Details</span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body-lg" id="printformtable">
+                <!--Customer printable table-->
+                <table class="mt-5 table table-bordered table-striped">
+                    <tbody>
+                    <div class="row mt-2 ml-2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label style="font-weight: bold ; color: #0f6674 ; font-size: medium" for="tdGrnNo">GRN
+                                    Code </label>
+                                <label style="font-weight: bold ; color: red ; font-size: xx-large" ;
+                                       id="tdGrnNo"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div style="text-align: right">
+                                    <label>Report Print Date </label>
+                                    <label id="tdPrinted"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-3 mr-3">
+                        <div class="col-md-6 ">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">GRN Type </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdGrnType"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Supplier </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdSupplier"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Purchase Order </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdPorder"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Supplier Return </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdSupReturn"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Received Date</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdReceivedDate">-</label>
+                                </div>
+                            </div>
+                            <!--<div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Com Person Name </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdCPName"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Com Person Contact No </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdCPContact"></label>
+                                </div>
+                            </div>-->
+                        </div>
+                        <div class="col-md-6 ">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Item Total</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdItemTot"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Return Amount</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdReturn"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Discount Ratio </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdDiscount"></label><label> %</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Net Amount </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdNetAmount"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Gross Amount </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdGross"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Description </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdDescription"></label>
+                                </div>
+                            </div>
+                            <!--<div class="row">
+                                <div class="col-md-5">
+                                    <label style="font-weight: bold">Description </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label style="font-weight: bold">:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label id="tdDescription"></label>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+
+                    <div class="row mt-2 mr-2">
+                        <div class="col-md-5">
+                        </div>
+                        <div class="col-md-7" id="tblPrintInnerItem">
+                            <div class="form-group">
+                                <label style="font-weight: bold ; font-size: x-large">GRN Item List </label>
+                                <script>
+                                    var metadatainner = [
+                                        //{column name / search(true/false) / datatype(text/photo/amount) / mappingproperty}
+                                        {
+                                            name: 'Item Name',
+                                            search: true,
+                                            datatype: 'text',
+                                            property: 'grnHasBatch.batch_id.item_id.itemname'
+                                        },
+                                    ];
+                                    tableForInnerForm("tblPrintInnerItem", "printInnerTable", metadatainner, false);
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row ml-2 mr-2">
+                        <tr>
+                            <td style="font-weight: bold; text-align: center">Added By :</td>
+                            <td id="tdAddedBy" style="color: red ; font-weight: bold ;  text-align: center"></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold; text-align: center">Status :</td>
+                            <td id="tdStatus" style="color: red ; font-weight: bold ;  text-align: center"></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold; text-align: center">Added Date :</td>
+                            <td id="tdAdded" style="color: red ; font-weight: bold ;  text-align: center"></td>
+                        </tr>
+                    </div>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="btnPrintRowMC()">Print</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay"></div>
+
+<!-- Settings Modal-->
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog"
+     aria-labelledby="settingsModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" id="modalContent">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle"><i
+                        class="fas fa-cog"></i> Settings</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form id="changePasswordForm" onsubmit="return false">
+                    <div class="form-row">
+                        <!-- Username -->
+                        <div class="form-group col-md-12">
+                            <label for="txtUsernameView" class="text-blue">
+                                <b>Username</b>
+                            </label>
+                            <div readonly class="form-control-plaintext"
+                                 id="txtUsernameView"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- Current Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtCurrentPassword"
+                                   class="text-blue"><b>Current Password</b> <i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtCurrentPassword"
+                                   onkeyup="textFieldBinder(txtCurrentPassword, '^[0-9]{5,}$', 'changePassword', 'currentPassword', 'oldChangePassword')">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- New Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtNewPassword" class="text-blue"><b>New
+                                Password</b><i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtNewPassword"
+                                   onkeyup="passwordFieldBinder(txtNewPassword, txtConfirmPassword, '^[0-9]{5,}$', 'changePassword', '', 'oldChangePassword')">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- Confirm Password -->
+                        <div class="form-group col-md-12">
+                            <label for="txtConfirmPassword"
+                                   class="text-blue"><b>Confirm
+                                Password</b><i
+                                    class="fas fa-question-circle text-primary ml-1"
+                                    data-toggle="tooltip" data-placement="right"
+                                    title=""></i></label>
+                            <input type="password"
+                                   class="form-control form-control-sm changePasswordFields"
+                                   id="txtConfirmPassword"
+                                   onkeyup="passwordFieldBinder(txtNewPassword, txtConfirmPassword, '^[0-9]{5,}$', 'changePassword', 'newPassword', 'oldChangePassword')">
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="brnClosechnagepasswordmodle" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary"
+                        onclick="btnSaveChangePasswordMC()">Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
